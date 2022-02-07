@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-// import { message, Row, Col } from "antd";
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
+
 const Article = styled.article({
   minHeight: '50vh',
   marginBottom: '3em',
@@ -21,19 +21,19 @@ const Item = styled.div({
 });
 
 function MainPage() {
-  const [mainPageDetail, setMainPageDetail] = useState([]);
+  const [PageDetail, setPageDetail] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:8000/blogs')
       .then((res) => res.json())
-      .then((res) => setMainPageDetail(res));
+      .then((res) => setPageDetail(res));
   }, []);
 
   return (
     <Article id="content">
       <h3>전체 글</h3>
       <section className="inner">
-        {mainPageDetail.map((value, index) => {
+        {PageDetail.map((value, index) => {
           let excerpt = value.content;
           if (excerpt.length > 200) {
             excerpt = excerpt.substring(0, 200) + '...';
