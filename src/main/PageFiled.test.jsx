@@ -15,11 +15,13 @@ Link에 대한 테스트는 결국 route에 대한 테스트이므로 여기서�
 describe('PageField', () => {
   it('renders the articleContent of page');
   const { queryByText } = render(
-    <PageField
-      articleTitle="전체글"
-      itemTitle="주간회고 1주차"
-      itemContent="공식문서를 생활화하자"
-    />
+    <MemoryRouter>
+      <PageField
+        articleTitle="전체글"
+        itemTitle="주간회고 1주차"
+        itemContent="공식문서를 생활화하자"
+      />
+    </MemoryRouter>
   );
 
   expect(queryByText(/전체글/)).not.toBeNull();

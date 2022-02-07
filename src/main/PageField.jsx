@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
@@ -20,40 +18,31 @@ const Item = styled.div({
   paddingBottom: '22px',
 });
 
-function MainPage() {
-  const [PageDetail, setPageDetail] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/blogs')
-      .then((res) => res.json())
-      .then((res) => setPageDetail(res));
-  }, []);
-
+export default function PageField({ articleTitle, pageDetail }) {
   return (
     <Article id="content">
-      <h3>전체 글</h3>
+      <h3>{articleTitle}</h3>
       <section className="inner">
-        {PageDetail.map((value, index) => {
-          let excerpt = value.content;
-          if (excerpt.length > 200) {
-            excerpt = excerpt.substring(0, 200) + '...';
-          }
+        {pageDetail &&
+          pageDetail.map((value) => {
+            let excerpt = value.content;
+            if (excerpt.length > 200) {
+              excerpt = excerpt.substring(0, 200) + '...';
+            }
 
-          return (
-            <Item className="post_item">
-              <span>{value.title}</span>
-              <p className="post_content" style={{ color: '#666' }}>
-                {excerpt}
-              </p>
-              <Link to={`/post/${value.category}/${value._id}`}>
+            return (
+              <Item className="post_item">
+                <span>{value.title}</span>
+                <p className="post_content" style={{ color: '#666' }}>
+                  {excerpt}
+                </p>
+                {/* <Link to={`/post/${value.category}/${value._id}`}>
                 더보기 &gt;
-              </Link>
-            </Item>
-          );
-        })}
+              </Link> */}
+              </Item>
+            );
+          })}
       </section>
     </Article>
   );
 }
-
-export default MainPage;
