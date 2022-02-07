@@ -1,17 +1,20 @@
-import { useEffect, useState } from 'react';
-
-import { fetchMainPage } from '../../services/api';
+import { useEffect } from 'react';
 
 import PageField from '../PageField';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { getPageContents } from '../../actions';
+
 function MainPage() {
-  const [mainPageDetail, setMainPageDetail] = useState([]);
+  const dispatch = useDispatch();
+  //useSelector는 언제 변하는가?
+  const mainPageContents = useSelector((state) => state.pages.main);
 
   useEffect(() => {
-    fetchMainPage().then(setMainPageDetail).catch(console.log);
+    dispatch(getPageContents('main'));
   }, []);
 
-  return <PageField articleTitle="전체글" pageDetail={mainPageDetail} />;
+  return <PageField articleTitle="전체글" pageContents={mainPageContents} />;
 }
 
 export default MainPage;

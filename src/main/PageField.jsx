@@ -18,27 +18,25 @@ const Item = styled.div({
   paddingBottom: '22px',
 });
 
-export default function PageField({ articleTitle, pageDetail }) {
+export default function PageField({ articleTitle, pageContents }) {
   return (
     <Article id="content">
       <h3>{articleTitle}</h3>
       <section className="inner">
-        {pageDetail &&
-          pageDetail.map((value) => {
-            let excerpt = value.content;
+        {pageContents &&
+          pageContents.map((pageDetail) => {
+            let excerpt = pageDetail.content;
             if (excerpt.length > 200) {
               excerpt = excerpt.substring(0, 200) + '...';
             }
 
             return (
-              <Item className="post_item">
-                <span>{value.title}</span>
+              <Item key={pageDetail.id} className="post_item">
+                <span>{pageDetail.title}</span>
                 <p className="post_content" style={{ color: '#666' }}>
                   {excerpt}
                 </p>
-                {/* <Link to={`/post/${value.category}/${value._id}`}>
-                더보기 &gt;
-              </Link> */}
+                <Link to="/">더보기 &gt;</Link>
               </Item>
             );
           })}
