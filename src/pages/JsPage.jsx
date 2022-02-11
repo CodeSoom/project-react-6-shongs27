@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import PageDetail from '../components/PageDetail';
+import PageContent from '../components/PageContent';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPageContents } from '../actions';
@@ -14,5 +14,5 @@ export default function JsPage() {
     dispatch(getPageContents('js'));
   }, []);
 
-  return <PageDetail articleTitle="JS" pageContents={jsPageContents} />;
+  return <PageContent articleTitle="JS" pageContents={jsPageContents} />;
 }

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import PageDetail from '../components/PageDetail';
+import PageContent from '../components/PageContent';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPageContents } from '../actions';
@@ -13,5 +13,5 @@ export default function ReactPage() {
     dispatch(getPageContents('react'));
   }, []);
 
-  return <PageDetail articleTitle="React" pageContents={ReactPageContents} />;
+  return <PageContent articleTitle="React" pageContents={ReactPageContents} />;
 }

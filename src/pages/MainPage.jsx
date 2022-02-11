@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import PageDetail from '../components/PageDetail';
+import PageContent from '../components/PageContent';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPageContents } from '../actions';
@@ -14,5 +14,5 @@ export default function MainPage() {
     dispatch(getPageContents('main'));
   }, []);
 
-  return <PageDetail articleTitle="전체글" pageContents={mainPageContents} />;
+  return <PageContent articleTitle="전체글" pageContents={mainPageContents} />;
 }

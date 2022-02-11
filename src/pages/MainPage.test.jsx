@@ -9,6 +9,9 @@ jest.mock('react-redux');
 
 /*
 1. 처음에 로드되면 데이터를 잘 받아오는가
+2. 페이지 (타이틀,내용) 이나 더보기를 누르면
+  페이지가 이동한다 => 링크로 이동은 테스트하지 않는다
+
 */
 describe('MainPage', () => {
   const dispatch = jest.fn();

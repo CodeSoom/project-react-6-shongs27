@@ -16,11 +16,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  devServer: {
-    historyApiFallback: {
-      index: 'index.html',
-    },
-  },
+  // devServer: {
+  //   historyApiFallback: {
+  //     index: 'index.html',
+  //   },
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
