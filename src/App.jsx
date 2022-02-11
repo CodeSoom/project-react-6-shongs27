@@ -1,5 +1,5 @@
-import PagesContainer from './main/PagesContainer';
-import HeaderBar from './top/HeaderBar';
+import PagesContainer from './PagesContainer';
+import HeaderBar from './commons/top/HeaderBar';
 
 import { Provider } from 'react-redux';
 import store from './store';

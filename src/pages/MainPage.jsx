@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
-import PageField from '../PageField';
+import PageDetail from '../components/PageDetail';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getPageContents } from '../../actions';
+import { getPageContents } from '../actions';
 
-function MainPage() {
+export default function MainPage() {
   const dispatch = useDispatch();
   //useSelector는 언제 변하는가?
   const mainPageContents = useSelector((state) => state.pages.main);
@@ -14,7 +14,5 @@ function MainPage() {
     dispatch(getPageContents('main'));
   }, []);
 
-  return <PageField articleTitle="전체글" pageContents={mainPageContents} />;
+  return <PageDetail articleTitle="전체글" pageContents={mainPageContents} />;
 }
-
-export default MainPage;

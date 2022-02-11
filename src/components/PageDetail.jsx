@@ -18,7 +18,8 @@ const Item = styled.div({
   paddingBottom: '22px',
 });
 
-export default function PageField({ articleTitle, pageContents }) {
+export default function PageDetail({ articleTitle, pageContents }) {
+
   return (
     <Article id="content">
       <h3>{articleTitle}</h3>
@@ -41,6 +42,10 @@ export default function PageField({ articleTitle, pageContents }) {
             );
           })}
       </section>
+
+      {/* <ReactMarkdown children={markdown}/> */}
+      
+   
     </Article>
   );
 }

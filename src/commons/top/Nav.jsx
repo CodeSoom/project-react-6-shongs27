@@ -3,7 +3,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { Link } from 'react-router-dom';
 
-import { navList, navAddress } from '../../fixture/navList';
+import { navList, navAddress } from '../../../fixture/navList';
 
 import styled from '@emotion/styled';
 const Container = styled.div({

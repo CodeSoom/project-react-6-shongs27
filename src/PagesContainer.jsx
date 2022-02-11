@@ -6,8 +6,8 @@ import ComputerPage from './pages/ComputerPage';
 import AlgorithmPage from './pages/AlgorithmPage';
 import SomethingPage from './pages/SomethingPage';
 
-import TopContainer from '../top/TopContainer';
-import Footer from '../Footer/FooterContainer';
+import TopContainer from './commons/top/TopContainer';
+import Footer from './commons/footer/FooterContainer';
 
 import styled from '@emotion/styled';
 
