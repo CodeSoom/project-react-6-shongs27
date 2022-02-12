@@ -4,6 +4,7 @@ const initialState = {
     js: [],
     react: [],
   },
+  page: {},
 };
 
 const reducer = {

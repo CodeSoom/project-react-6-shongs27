@@ -5,7 +5,7 @@ import ReactPage from './pages/ReactPage';
 // import ComputerPage from './pages/ComputerPage';
 // import AlgorithmPage from './pages/AlgorithmPage';
 // import SomethingPage from './pages/SomethingPage';
-import PageDetail from './components/PageDetail';
+import PageDetail from './components/PageDetailContainer';
 
 import TopContainer from './commons/top/TopContainer';
 import Footer from './commons/footer/FooterContainer';
@@ -31,10 +31,11 @@ export default function PagesContainer() {
         <MiddleContainer>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/:id" element={<PageDetail />} />
-
             <Route path="/js" element={<JsPage />} />
             <Route path="/react" element={<ReactPage />} />
+
+            <Route path="/:category/:id" element={<PageDetail />} />
+
             {/* <Route path="/computer" element={<ComputerPage />} />
             <Route path="/algorithm" element={<AlgorithmPage />} />
             <Route path="/something" element={<SomethingPage />} /> */}
