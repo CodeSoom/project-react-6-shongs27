@@ -2,7 +2,10 @@ import { render } from '@testing-library/react';
 
 import TopContainer from './TopContainer';
 
-import { mainTitle } from '../../fixture/title';
+import { MemoryRouter } from 'react-router-dom';
+
+import { mainTitle } from '../../../fixture/title';
+import { navList } from '../../../fixture/navList';
 
 /* Header Nav Title이 잘보이고 결합되어있는가 
 하나씩만 점검하자
@@ -12,15 +15,12 @@ import { mainTitle } from '../../fixture/title';
 */
 describe('TopContainer', () => {
   function renderContainer() {
-    return render(<TopContainer />);
+    return render(
+      <MemoryRouter>
+        <TopContainer />
+      </MemoryRouter>
+    );
   }
-
-  it('render <Header />', () => {
-    const { container, queryAllByRole } = renderContainer();
-
-    expect(queryAllByRole('img', { hidden: true })).not.toBeNull();
-    expect(container).toHaveTextContent(/소개/);
-  });
 
   it('render <Title />', () => {
     const { container } = renderContainer();
@@ -30,7 +30,8 @@ describe('TopContainer', () => {
 
   it('render <Nav />', () => {
     const { container } = renderContainer();
+    const Home = navList[0];
 
-    expect(container).toHaveTextContent(/Home/);
+    expect(container).toHaveTextContent(Home);
   });
 });
