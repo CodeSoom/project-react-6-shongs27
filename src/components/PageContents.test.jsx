@@ -12,8 +12,9 @@ props가 article, content일 때
 Link에 대한 테스트는 결국 route에 대한 테스트이므로 여기서는 관심사가 아니다
 */
 
-describe('PageField', () => {
-  it('renders the articleContent of page');
+describe('PageContents', () => {
+  //많은 컨텐츠 중에 하나만 테스트
+  it('renders the Contents of page');
   const { queryByText } = render(
     <MemoryRouter>
       <PageField

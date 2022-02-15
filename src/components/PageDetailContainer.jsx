@@ -1,9 +1,21 @@
+import { useEffect } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+
 import { useParams } from 'react-router-dom';
+import { getPageDetail } from '../actions';
+
+import PageDetail from './PageDetail';
 
 export default function PageDetailContainer() {
-  //1. useParams의 파라미터로 데이터 다시 fetch
-  //2. Link를 통해 데이터 전달
+  const dispatch = useDispatch();
   const params = useParams();
 
-  return <div>페이지 세부사항</div>;
+  useEffect(() => {
+    dispatch(getPageDetail(params));
+  }, [params]);
+
+  const pageDetail = useSelector((state) => state.page);
+
+  return <PageDetail pageDetail={pageDetail} />;
 }

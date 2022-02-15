@@ -3,10 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/index.jsx'),
-  output: {
-    publicPath: '/',
-  },
+  // entry: path.resolve(__dirname, 'src/index.jsx'),
   module: {
     rules: [
       {
@@ -21,7 +18,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: {
-      index: '/index.html',
+      index: 'index.html',
     },
   },
   plugins: [

@@ -1,10 +1,10 @@
 const initialState = {
   pages: {
-    main: [],
+    home: [],
     js: [],
     react: [],
   },
-  page: {},
+  page: { id: '', title: '', content: '' },
 };
 
 const reducer = {
@@ -17,7 +17,15 @@ const reducer = {
       },
     };
   },
+
+  setPageDetail(state, { payload: { pageDetail } }) {
+    return {
+      ...state,
+      page: pageDetail,
+    };
+  },
 };
+
 function defaultReducer(state) {
   return state;
 }

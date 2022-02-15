@@ -37,13 +37,12 @@ describe('PageDetailContainer', () => {
       id: 4,
       title: '배열의 반복',
       content: 'for뿐만아니라 forEach, map을 통하여 배열의 반복을',
-      category: 'main',
+      category: 'home',
+      like: 4,
     }));
 
     it('renders Page detail', () => {
       const { getByText } = render(<PageDetailContainer />);
-
-      expect(dispatch).toBeCalled();
 
       expect(getByText(/배열의 반복/)).not.toBeNull();
       expect(

@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
+import HomePage from './pages/HomePage';
 import JsPage from './pages/JsPage';
 import ReactPage from './pages/ReactPage';
 // import ComputerPage from './pages/ComputerPage';
 // import AlgorithmPage from './pages/AlgorithmPage';
 // import SomethingPage from './pages/SomethingPage';
-import PageDetail from './components/PageDetailContainer';
+import PageDetailContainer from './components/PageDetailContainer';
 
 import TopContainer from './commons/top/TopContainer';
 import Footer from './commons/footer/FooterContainer';
@@ -30,11 +30,11 @@ export default function PagesContainer() {
         <TopContainer />
         <MiddleContainer>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/js" element={<JsPage />} />
             <Route path="/react" element={<ReactPage />} />
 
-            <Route path="/:category/:id" element={<PageDetail />} />
+            <Route path="/:category/:id" element={<PageDetailContainer />} />
 
             {/* <Route path="/computer" element={<ComputerPage />} />
             <Route path="/algorithm" element={<AlgorithmPage />} />
