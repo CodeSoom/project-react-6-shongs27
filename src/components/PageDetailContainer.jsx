@@ -10,7 +10,7 @@ import PageDetail from './PageDetail';
 export default function PageDetailContainer() {
   const dispatch = useDispatch();
   const params = useParams();
-  console.log('params', params);
+
   useEffect(() => {
     dispatch(getPageDetail(params));
   }, [params]);

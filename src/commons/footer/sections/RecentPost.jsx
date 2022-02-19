@@ -4,14 +4,6 @@
 export default function RecentPost() {
   //   const [RecentList, setRecentList] = useState([]);
 
-  //   useEffect(() => {
-  //     axios.get('/api/post/getRecentPage').then((res) => {
-  //       if (res.data.try) {
-  //         setRecentList(res.data.doc);
-  //       }
-  //     });
-  //   }, []);
-
   return (
     <div className="sidebar1" sytle={{ display: 'flex' }}>
       <h2>최근포스트</h2>
