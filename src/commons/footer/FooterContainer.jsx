@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import RecentPost from './sections/RecentPost';
 import FooterBar from './FooterBar';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getFooterPosts } from '../../actions';
 
 const Container = styled.div({
   borderTop: '1px solid black',
@@ -12,10 +14,11 @@ const Container = styled.div({
 
 export default function FooterContainer() {
   const dispatch = useDispatch();
-  const { recentPosts } = useSelector((state) => state.posts.recentPosts);
+  // const recentPosts = useSelector((state) => state.posts.recentPosts);
+  // const popularPosts = useSelector((state) => state.posts.popularPosts);
 
   useEffect(() => {
-    dispatch(getRecentPosts());
+    dispatch(getFooterPosts());
   }, []);
 
   return (

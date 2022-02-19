@@ -1,4 +1,8 @@
-import { fetchPageContents, fetchPageDetail } from './services/api';
+import {
+  fetchPageContents,
+  fetchPageDetail,
+  fetchRecentPosts,
+} from './services/api';
 
 export function getPageContents(category) {
   return async (dispatch) => {
@@ -30,5 +34,23 @@ export function setPageDetail(pageDetail) {
   return {
     type: 'setPageDetail',
     payload: { pageDetail },
+  };
+}
+
+export function getFooterPosts() {
+  return async (dispatch) => {
+    try {
+      // const [recentPosts, popularPosts] = await Promise.all([
+      //   fetchRecentPosts(),
+      //   fetchPopularPosts(),
+      // ]);
+
+      const recentPosts = await fetchRecentPosts();
+      dispatch(setRecentPosts(recentPosts));
+      // dispatch(setPopularPosts(popularPosts));
+    } catch (error) {
+      console.log('Footer 포스트 받아오기 실패');
+      console.log(error);
+    }
   };
 }

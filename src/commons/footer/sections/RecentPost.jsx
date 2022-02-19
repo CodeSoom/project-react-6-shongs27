@@ -1,11 +1,21 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import styled from '@emotion/styled';
+const Container = styled.div({
+  display: 'flex',
+});
+
+const ul = styled.ul({
+  minHeight: '50vh',
+  marginBottom: '3em',
+
+  // '& h3': {
+  //   padding: '1em 0',
+  //   borderBottom: '1px solid rgb(230, 230, 230)',
+  // },
+});
 
 export default function RecentPost() {
-  //   const [RecentList, setRecentList] = useState([]);
-
   return (
-    <div className="sidebar1" sytle={{ display: 'flex' }}>
+    <Container>
       <h2>최근포스트</h2>
       <ul
         style={{
@@ -28,6 +38,6 @@ export default function RecentPost() {
           </li>
         ))} */}
       </ul>
-    </div>
+    </Container>
   );
 }
