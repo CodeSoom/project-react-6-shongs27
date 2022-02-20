@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-const Container = styled.div({
-  display: 'flex',
-});
+const Container = styled.div({});
 
 const ul = styled.ul({
   minHeight: '50vh',

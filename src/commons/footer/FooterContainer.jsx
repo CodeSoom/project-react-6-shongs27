@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import RecentPosts from './sections/RecentPosts';
+import PopularPosts from './sections/PopularPosts';
 import FooterBar from './FooterBar';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +11,10 @@ import { getFooterPosts } from '../../actions';
 
 const Container = styled.div({
   borderTop: '1px solid black',
+  display: 'flex',
+  justifyContent: 'space-around',
 
-  height: 'calc(100% - 80px)',
+  // height: 'calc(100% - 80px)',
 });
 
 export default function FooterContainer() {
@@ -24,9 +27,12 @@ export default function FooterContainer() {
   }, []);
 
   return (
-    <Container>
-      <RecentPosts recentPosts={recentPosts} />
+    <>
+      <Container>
+        <RecentPosts recentPosts={recentPosts} />
+        <PopularPosts popularPosts={popularPosts} />
+      </Container>
       <FooterBar popularPosts={popularPosts} />
-    </Container>
+    </>
   );
 }

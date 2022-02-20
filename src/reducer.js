@@ -36,10 +36,10 @@ const reducer = {
     };
   },
 
-  setRecentPosts(state, { payload: { recentPosts } }) {
+  setPopularPosts(state, { payload: { popularPosts } }) {
     return {
       ...state,
-      posts: { ...state.posts, recentPosts },
+      posts: { ...state.posts, popularPosts },
     };
   },
 };
