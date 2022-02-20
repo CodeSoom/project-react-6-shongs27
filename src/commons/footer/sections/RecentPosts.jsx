@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 const Container = styled.div({
   display: 'flex',
@@ -15,7 +15,7 @@ const ul = styled.ul({
   // },
 });
 
-export default function recentPosts({ recentPosts }) {
+export default function RecentPosts({ recentPosts = [] }) {
   return (
     <Container>
       <h2>최근포스트</h2>
@@ -25,22 +25,20 @@ export default function recentPosts({ recentPosts }) {
           paddingLeft: '0px',
         }}
       >
-        {recentPosts &&
-          recentPosts.map(({ id, title, category, like }, index) => (
-            <li key={index} style={{ borderBottom: '1px solid #e6e6e6' }}>
-              <Link
-                style={{
-                  fontSize: '14px',
-                  fontWeight: '400',
-                  padding: '8px 0',
-                }}
-                to={`/${category}/${id}`}
-              >
-                {title}
-                {like}
-              </Link>
-            </li>
-          ))}
+        {recentPosts.map(({ id, title, category, likes }, index) => (
+          <li key={index} style={{ borderBottom: '1px solid #e6e6e6' }}>
+            <Link
+              style={{
+                fontSize: '14px',
+                fontWeight: '400',
+                padding: '8px 0',
+              }}
+              to={`/${category}/${id}`}
+            >
+              {title} - {category} - {likes}
+            </Link>
+          </li>
+        ))}
       </ul>
     </Container>
   );
