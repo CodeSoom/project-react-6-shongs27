@@ -17,7 +17,7 @@ const Container = styled.div({
 export default function FooterContainer() {
   const dispatch = useDispatch();
   const recentPosts = useSelector((state) => state.posts.recentPosts);
-  // const popularPosts = useSelector((state) => state.posts.popularPosts);
+  const popularPosts = useSelector((state) => state.posts.popularPosts);
 
   useEffect(() => {
     dispatch(getFooterPosts());
@@ -26,7 +26,7 @@ export default function FooterContainer() {
   return (
     <Container>
       <RecentPosts recentPosts={recentPosts} />
-      <FooterBar />
+      <FooterBar popularPosts={popularPosts} />
     </Container>
   );
 }

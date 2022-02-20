@@ -35,6 +35,13 @@ const reducer = {
       posts: { ...state.posts, recentPosts },
     };
   },
+
+  setRecentPosts(state, { payload: { recentPosts } }) {
+    return {
+      ...state,
+      posts: { ...state.posts, recentPosts },
+    };
+  },
 };
 
 function defaultReducer(state) {

@@ -15,17 +15,17 @@ const ul = styled.ul({
   // },
 });
 
-export default function RecentPosts({ recentPosts = [] }) {
+export default function PopularPosts({ popularPosts = [] }) {
   return (
     <Container>
-      <h2>최근포스트</h2>
+      <h2>인기포스트</h2>
       <ul
         style={{
           listStyle: 'none',
           paddingLeft: '0px',
         }}
       >
-        {recentPosts.map(({ id, title, category, likes }, index) => (
+        {popularPosts.map(({ id, title, category, likes }, index) => (
           <li key={index} style={{ borderBottom: '1px solid #e6e6e6' }}>
             <Link
               style={{
@@ -35,7 +35,7 @@ export default function RecentPosts({ recentPosts = [] }) {
               }}
               to={`/${category}/${id}`}
             >
-              {title} - {category}
+              {title} - {category} - {likes}
             </Link>
           </li>
         ))}
