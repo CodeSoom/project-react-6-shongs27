@@ -54,3 +54,10 @@ export function getFooterPosts() {
     }
   };
 }
+
+export function setRecentPosts(recentPosts) {
+  return {
+    type: 'setRecentPosts',
+    payload: { recentPosts },
+  };
+}

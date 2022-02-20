@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
 
-import RecentPost from './sections/RecentPost';
+import RecentPosts from './sections/RecentPosts';
 import FooterBar from './FooterBar';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
 import { getFooterPosts } from '../../actions';
 
 const Container = styled.div({
@@ -14,7 +16,7 @@ const Container = styled.div({
 
 export default function FooterContainer() {
   const dispatch = useDispatch();
-  // const recentPosts = useSelector((state) => state.posts.recentPosts);
+  const recentPosts = useSelector((state) => state.posts.recentPosts);
   // const popularPosts = useSelector((state) => state.posts.popularPosts);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function FooterContainer() {
 
   return (
     <Container>
-      <RecentPost />
+      <RecentPosts recentPosts={recentPosts} />
       <FooterBar />
     </Container>
   );

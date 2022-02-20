@@ -5,6 +5,10 @@ const initialState = {
     react: [],
   },
   page: { id: '', title: '', content: '' },
+  posts: {
+    recentPosts: [],
+    popularPosts: [],
+  },
 };
 
 const reducer = {
@@ -22,6 +26,13 @@ const reducer = {
     return {
       ...state,
       page: pageDetail,
+    };
+  },
+
+  setRecentPosts(state, { payload: { recentPosts } }) {
+    return {
+      ...state,
+      posts: { ...state.posts, recentPosts },
     };
   },
 };
