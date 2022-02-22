@@ -14,22 +14,20 @@ const Container = styled.div({
   borderTop: '1px solid rgb(230, 230, 230)',
 
   marginTop: '60px',
-  padding: '57px 0 24px',
+  minHeight: '300px',
+  padding: '57px 34px 24px',
   // height: 'calc(100% - 80px)',
 
-  //자동조절
-  padding: '2em',
+  // '@media screen and (max-width: 1199px)': {
+  //   paddingLeft: '34px',
+  //   paddingRight: '34px',
+  // },
 
-  '@media screen and (max-width: 1199px)': {
-    paddingLeft: '34px',
-    paddingRight: '34px',
-  },
-
-  '& div': {
-    overflow: 'hidden',
-    maxWidth: '1200px',
-    margin: '0 auto',
-  },
+  // '& div': {
+  // overflow: 'hidden',
+  // maxWidth: '1200px',
+  // margin: '0 auto',
+  // },
 });
 
 export default function FooterContainer() {

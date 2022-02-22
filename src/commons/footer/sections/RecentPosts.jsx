@@ -6,7 +6,7 @@ import { List, Item } from '../../../styles/pageStyle';
 const Container = styled.div({
   float: 'left',
   width: '33.3%',
-  minHeight: '10px',
+  minHeight: '300px',
   paddingRight: '36px',
   boxSizing: 'border-box',
 });

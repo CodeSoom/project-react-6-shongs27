@@ -9,8 +9,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 const Container = styled.div({
   float: 'left',
   width: '33.3%',
-  minHeight: '10px',
-  margin: '0 0 40px',
+  minHeight: '300px',
   padding: '0 12px',
   boxSizing: 'border-box',
 });

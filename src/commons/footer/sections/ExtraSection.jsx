@@ -5,7 +5,7 @@ import SearchSection from './SearchSection';
 export const Container = styled.div({
   float: 'left',
   width: '33.3%',
-  minHeight: '10px',
+  minHeight: '300px',
   paddingLeft: '36px',
   boxSizing: 'border-box',
 });

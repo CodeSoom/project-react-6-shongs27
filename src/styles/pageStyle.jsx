@@ -18,6 +18,8 @@ export const Item = styled.li({
   listStyle: 'none',
   borderBottom: '1px solid #e6e6e6',
 
+  padding: '8px 0',
+
   '& a': {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -26,6 +28,5 @@ export const Item = styled.li({
     lineHeight: '1.5714',
     whiteSpace: 'nowrap',
     color: '#95a5a6',
-    padding: '8px 0',
   },
 });
