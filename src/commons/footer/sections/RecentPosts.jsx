@@ -1,43 +1,31 @@
 import { Link } from 'react-router-dom';
+
 import styled from '@emotion/styled';
+import { List, Item } from '../../../styles/pageStyle';
 
-const Container = styled.div({});
-
-const ul = styled.ul({
-  minHeight: '50vh',
-  marginBottom: '3em',
-
-  // '& h3': {
-  //   padding: '1em 0',
-  //   borderBottom: '1px solid rgb(230, 230, 230)',
-  // },
+const Container = styled.div({
+  float: 'left',
+  width: '33.3%',
+  minHeight: '10px',
+  paddingRight: '36px',
+  boxSizing: 'border-box',
 });
 
 export default function RecentPosts({ recentPosts = [] }) {
   return (
     <Container>
-      <h2>최근포스트</h2>
-      <ul
-        style={{
-          listStyle: 'none',
-          paddingLeft: '0px',
-        }}
-      >
-        {recentPosts.map(({ id, title, category, likes }, index) => (
-          <li key={index} style={{ borderBottom: '1px solid #e6e6e6' }}>
-            <Link
-              style={{
-                fontSize: '14px',
-                fontWeight: '400',
-                padding: '8px 0',
-              }}
-              to={`/${category}/${id}`}
-            >
-              {title} - {category}
+      <h3>최근포스트</h3>
+      <List>
+        {recentPosts.map(({ id, title, category }, index) => (
+          <Item key={index}>
+            <Link to={`/${category}/${id}`}>
+              <span>{`<${
+                category[0].toUpperCase() + category.slice(1)
+              }> ${title} `}</span>
             </Link>
-          </li>
+          </Item>
         ))}
-      </ul>
+      </List>
     </Container>
   );
 }

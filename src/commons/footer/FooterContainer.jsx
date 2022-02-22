@@ -8,13 +8,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import { getFooterPosts } from '../../actions';
+import ExtraSection from './sections/ExtraSection';
 
 const Container = styled.div({
-  borderTop: '1px solid black',
-  display: 'flex',
-  justifyContent: 'space-around',
+  borderTop: '1px solid rgb(230, 230, 230)',
 
+  marginTop: '60px',
+  padding: '57px 0 24px',
   // height: 'calc(100% - 80px)',
+
+  //자동조절
+  padding: '2em',
+
+  '@media screen and (max-width: 1199px)': {
+    paddingLeft: '34px',
+    paddingRight: '34px',
+  },
+
+  '& div': {
+    overflow: 'hidden',
+    maxWidth: '1200px',
+    margin: '0 auto',
+  },
 });
 
 export default function FooterContainer() {
@@ -29,8 +44,11 @@ export default function FooterContainer() {
   return (
     <>
       <Container>
-        <RecentPosts recentPosts={recentPosts} />
-        <PopularPosts popularPosts={popularPosts} />
+        <div>
+          <RecentPosts recentPosts={recentPosts} />
+          <PopularPosts popularPosts={popularPosts} />
+          <ExtraSection />
+        </div>
       </Container>
       <FooterBar popularPosts={popularPosts} />
     </>

@@ -17,9 +17,9 @@ import Footer from './commons/footer/FooterContainer';
 import styled from '@emotion/styled';
 
 const Container = styled.div({
-  fontFamily: 'Noto Sans KR',
-  margin: '0 auto',
+  margin: '2em auto',
   width: '50%',
+  minHeight: '70vh',
 });
 
 export default function PagesContainer() {
@@ -30,6 +30,9 @@ export default function PagesContainer() {
       <Nav />
       <Container>
         <Routes>
+          {/* route /일 경우 메인페이지 변경할 것 */}
+          <Route path="/" element={<HomePage />} />
+
           <Route path="/home" element={<HomePage />} />
           <Route path="/js" element={<JsPage />} />
           <Route path="/react" element={<ReactPage />} />

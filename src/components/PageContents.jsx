@@ -1,12 +1,11 @@
-import { Link, Routes, Route, useParams, Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
 const Article = styled.article({
-  minHeight: '50vh',
   marginBottom: '3em',
 
-  '& h3': {
+  '& h2': {
     padding: '1em 0',
     borderBottom: '1px solid rgb(230, 230, 230)',
   },
@@ -21,26 +20,24 @@ const Item = styled.div({
 export default function PageContents({ articleTitle, pageContents }) {
   return (
     <Article id="content">
-      <h3>{articleTitle}</h3>
-      <section className="inner">
-        {pageContents &&
-          pageContents.map(({ id, title, content, category }) => {
-            //excerpt 기능
-            if (content.length > 200) {
-              content = content.substring(0, 200) + '...';
-            }
+      <h2>{articleTitle}</h2>
+      {pageContents &&
+        pageContents.map(({ id, title, content, category }) => {
+          //excerpt 기능
+          if (content.length > 200) {
+            content = content.substring(0, 200) + '...';
+          }
 
-            return (
-              <Item key={id} className="post_item">
-                <span>{title}</span>
-                <p className="post_content" style={{ color: '#666' }}>
-                  {content}
-                </p>
-                <Link to={`/${category}/${id}`}>더보기 &gt;</Link>
-              </Item>
-            );
-          })}
-      </section>
+          return (
+            <Item key={id} className="post_item">
+              <span>{title}</span>
+              <p className="post_content" style={{ color: '#666' }}>
+                {content}
+              </p>
+              <Link to={`/${category}/${id}`}>더보기 &gt;</Link>
+            </Item>
+          );
+        })}
       <Outlet />
     </Article>
   );
