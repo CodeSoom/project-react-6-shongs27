@@ -85,6 +85,7 @@ export function getSearchTarget() {
     const searchTarget = await fetchSearchTarget(searchField);
 
     dispatch(setSearchTarget(searchTarget));
+    dispatch(changeSearchField(''));
   };
 }
 
