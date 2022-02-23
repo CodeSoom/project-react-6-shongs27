@@ -13,7 +13,7 @@ import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
 import Nav from './commons/top/Nav';
 
-import Footer from './commons/footer/FooterContainer';
+import Footer from './commons/aside/FooterContainer';
 
 import styled from '@emotion/styled';
 
