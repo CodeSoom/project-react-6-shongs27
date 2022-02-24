@@ -19,12 +19,18 @@ const List = styled.ul({
   listStyle: 'none',
 
   margin: 0,
-  padding: 0,
+  padding: '0 1em 0',
 });
 
 const Item = styled.li({
   marginRight: '1em',
   fontWeight: 'bold',
+
+  marginTop: '.4em',
+
+  '& span': {
+    marginLeft: '.5em',
+  },
 });
 
 const ListRight = styled.ul({
@@ -42,11 +48,17 @@ const ListRight = styled.ul({
   right: 0,
 
   borderRadius: '20px',
+  zIndex: 1,
 
   '& span': {
     lineHeight: '2em',
     paddingLeft: '.8em',
     paddingRight: '.8em',
+
+    '& a': {
+      textDecoration: 'none',
+      color: 'inherit',
+    },
   },
 });
 
@@ -56,28 +68,31 @@ export default function HeaderBar() {
       <List>
         <Item>
           <Link to="/">
-            <FontAwesomeIcon icon={faHome} />
+            <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
         </Item>
 
         <Item>
-          <FontAwesomeIcon icon={faFile} />
-          <span> 소개</span>
+          <FontAwesomeIcon icon={faFile} size="lg" />
+          <span>소개</span>
         </Item>
 
         <Item>
-          <FontAwesomeIcon icon={faGamepad} />
-          <span> 게임</span>
+          <FontAwesomeIcon icon={faGamepad} size="lg" />
+          <span>게임</span>
         </Item>
 
         <Item>
-          <FontAwesomeIcon icon={faChalkboardTeacher} />
-          <span> 방명록</span>
+          <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
+          <span>방명록</span>
         </Item>
       </List>
 
       <ListRight>
-        <span> Hong WonBae </span>
+        <span>
+          <Link to="/login"> Hong WonBae </Link>
+        </span>
+
         <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
 
         <span>
