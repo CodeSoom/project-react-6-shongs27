@@ -102,3 +102,9 @@ export function changeLoginField(name, value) {
     payload: { name, value },
   };
 }
+
+export function reverseClicked() {
+  return {
+    type: 'reverseClicked',
+  };
+}

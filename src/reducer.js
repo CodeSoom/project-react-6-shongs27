@@ -20,6 +20,7 @@ const initialState = {
     },
     accessToken: '',
   },
+  clicked: false,
 };
 
 const reducer = {
@@ -84,6 +85,13 @@ const reducer = {
           [name]: value,
         },
       },
+    };
+  },
+
+  reverseClicked(state) {
+    return {
+      ...state,
+      clicked: !state.clicked,
     };
   },
 };
