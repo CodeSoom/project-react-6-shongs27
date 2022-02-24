@@ -13,6 +13,13 @@ const initialState = {
     searchField: '',
     searchTarget: [],
   },
+  login: {
+    loginField: {
+      email: '',
+      password: '',
+    },
+    accessToken: '',
+  },
 };
 
 const reducer = {
@@ -63,6 +70,19 @@ const reducer = {
       search: {
         ...state.search,
         searchTarget,
+      },
+    };
+  },
+
+  changeLoginField(state, { payload: { name, value } }) {
+    return {
+      ...state,
+      login: {
+        ...state.login,
+        loginField: {
+          ...state.login.loginField,
+          [name]: value,
+        },
       },
     };
   },

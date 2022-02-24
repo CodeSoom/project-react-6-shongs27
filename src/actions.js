@@ -95,3 +95,10 @@ export function setSearchTarget(searchTarget) {
     payload: { searchTarget },
   };
 }
+
+export function changeLoginField(name, value) {
+  return {
+    type: 'changeLoginField',
+    payload: { name, value },
+  };
+}
