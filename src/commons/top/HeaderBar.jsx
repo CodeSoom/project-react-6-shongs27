@@ -9,58 +9,81 @@ import {
 
 import { Link } from 'react-router-dom';
 
+import styled from '@emotion/styled';
+
+const List = styled.ul({
+  display: 'flex',
+  height: '5vh',
+  backgroundColor: 'black',
+  color: 'gray',
+  listStyle: 'none',
+
+  margin: 0,
+  padding: 0,
+});
+
+const Item = styled.li({
+  marginRight: '1em',
+  fontWeight: 'bold',
+});
+
+const ListRight = styled.ul({
+  display: 'flex',
+  height: '5vh',
+  backgroundColor: 'black',
+  color: 'gray',
+  listStyle: 'none',
+
+  margin: 0,
+  padding: 0,
+
+  position: 'fixed',
+  top: 0,
+  right: 0,
+
+  borderRadius: '20px',
+
+  '& span': {
+    lineHeight: '2em',
+    paddingLeft: '.8em',
+    paddingRight: '.8em',
+  },
+});
+
 export default function HeaderBar() {
   return (
     <>
-      <div
-        className="left-HeaderBar"
-        style={{
-          display: 'flex',
-          height: '5vh',
-          backgroundColor: 'black',
-          color: 'gray',
-          fontWeight: 'bold',
-        }}
-      >
-        <div className="HeaderBar-home" style={{ marginRight: '20px' }}>
+      <List>
+        <Item>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} />
           </Link>
-        </div>
+        </Item>
 
-        <div className="HeaderBar-resume" style={{ marginRight: '20px' }}>
+        <Item>
           <FontAwesomeIcon icon={faFile} />
           <span> 소개</span>
-        </div>
+        </Item>
 
-        <div className="HeaderBar-game" style={{ marginRight: '20px' }}>
+        <Item>
           <FontAwesomeIcon icon={faGamepad} />
           <span> 게임</span>
-        </div>
+        </Item>
 
-        <div className="HeaderBar-board" style={{ marginRight: '20px' }}>
+        <Item>
           <FontAwesomeIcon icon={faChalkboardTeacher} />
           <span> 방명록</span>
-        </div>
-      </div>
+        </Item>
+      </List>
 
-      <div
-        className="right-HeaderBar"
-        style={{
-          display: 'flex',
-          position: 'fixed',
-          top: 0,
-          right: 5,
-          height: '5vh',
-          backgroundColor: 'black',
-          color: 'gray',
-          fontWeight: 'bold',
-        }}
-      >
+      <ListRight>
         <span> Hong WonBae </span>
         <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
-        <FontAwesomeIcon icon={faSearch} />
-      </div>
+
+        <span>
+          <FontAwesomeIcon icon={faSearch} size="lg" />
+        </span>
+      </ListRight>
     </>
   );
 }
