@@ -12,6 +12,7 @@ describe('LoginPage', () => {
     const { container, getByLabelText } = render(<LoginPage />);
 
     expect(container).toHaveTextContent('로그인');
-    expect(getByLabelText('loginFiled')).not.toBeNull();
+    expect(getByLabelText('Email')).not.toBeNull();
+    expect(getByLabelText('Password')).not.toBeNull();
   });
 });
