@@ -16,6 +16,7 @@ import Nav from './commons/top/Nav';
 import Footer from './commons/aside/FooterContainer';
 
 import styled from '@emotion/styled';
+import LoginPage from './pages/LoginPage';
 
 const Container = styled.div({
   margin: '2em auto',
@@ -40,6 +41,7 @@ export default function PagesContainer() {
 
           <Route path="/:category/:id" element={<PageDetailContainer />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/login" elemment={<LoginPage />} />
 
           <Route path="*" element={<div>Not Found Page</div>} />
         </Routes>
