@@ -21,31 +21,53 @@ describe('LoginPage', () => {
             email: '',
             password: '',
           },
+          accessToken: '',
         },
       })
     );
   });
 
-  it('render Basic Login input form', () => {
-    const { container, getByLabelText } = render(<LoginPage />);
+  context('when Logged out', () => {
+    it('render Login input form', () => {
+      const { container, getByLabelText } = render(<LoginPage />);
 
-    expect(container).toHaveTextContent('로그인');
-    expect(getByLabelText('Email')).not.toBeNull();
-    expect(getByLabelText('Password')).not.toBeNull();
+      expect(container).toHaveTextContent('로그인');
+      expect(getByLabelText('Email')).not.toBeNull();
+      expect(getByLabelText('Password')).not.toBeNull();
+    });
+
+    it('listens LoginField changeEvent', () => {
+      const { getByLabelText } = render(<LoginPage />);
+      const inputs = [
+        { text: 'Email', value: 'dkxm@naver.com', name: 'email' },
+        { text: 'Password', value: '1234', name: 'password' },
+      ];
+
+      inputs.forEach(({ text, value, name }) => {
+        fireEvent.change(getByLabelText(text), {
+          target: { value },
+        });
+
+        expect(dispatch).toBeCalledWith(changeLoginField(name, value));
+      });
+    });
+
+    it('listens LoginButton clickEvent', () => {
+      const { getByText } = render(<LoginPage />);
+
+      fireEvent.click(getByText('인증'));
+
+      expect(dispatch).toBeCalledWith(requestLogin());
+    });
   });
 
-  it('render change LoginField', () => {
-    const { getByLabelText } = render(<LoginPage />);
+  context('when Logged in', () => {
+    it('render Logout button', () => {
+      const { getByText } = render(<LoginPage />);
 
-    [
-      { text: 'Email', value: 'dkxm@naver.com', name: 'email' },
-      { text: 'Password', value: '1234', name: 'password' },
-    ].forEach(({ text, value, name }) => {
-      fireEvent.change(getByLabelText(text), {
-        target: { value },
-      });
+      fireEvent.click(getByText('떠나기'));
 
-      expect(dispatch).toBeCalledWith(changeLoginField(name, value));
+      expect(dispatch).toBeCalledWith(requestLogout());
     });
   });
 });
