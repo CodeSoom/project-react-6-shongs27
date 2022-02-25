@@ -4,6 +4,7 @@ import {
   fetchPopularPosts,
   fetchRecentPosts,
   fetchSearchTarget,
+  postLogin,
 } from './services/api';
 
 export function setPageContents(pageName, pageContents) {
@@ -96,6 +97,12 @@ export function setSearchTarget(searchTarget) {
   };
 }
 
+export function reverseClicked() {
+  return {
+    type: 'reverseClicked',
+  };
+}
+
 export function changeLoginField(name, value) {
   return {
     type: 'changeLoginField',
@@ -103,8 +110,30 @@ export function changeLoginField(name, value) {
   };
 }
 
-export function reverseClicked() {
+export function requestLogin() {
+  return async (dispatch, getState) => {
+    const {
+      login: {
+        loginField: { email, password },
+      },
+    } = getState();
+
+    const accessToken = await postLogin(email, password);
+    localStorage.setItem('blogToken', accessToken);
+    dispatch(setAccessToken(accessToken));
+  };
+}
+
+export function setAccessToken(accessToken) {
   return {
-    type: 'reverseClicked',
+    type: 'setAccessToken',
+    payload: { accessToken },
+  };
+}
+
+export function logout() {
+  localStorage.removeItem('blogToken');
+  return {
+    type: 'logout',
   };
 }

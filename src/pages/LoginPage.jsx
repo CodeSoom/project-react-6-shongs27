@@ -1,9 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { changeLoginField } from '../actions';
+import { changeLoginField, logout, requestLogin } from '../actions';
+
+import LoginForm from '../components/LoginForm';
+import LogoutForm from '../components/LogoutForm';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const { email, password } = useSelector((state) => state.login.loginField);
+  const loginField = useSelector((state) => state.login.loginField);
+  const accessToken = useSelector((state) => state.login.accessToken);
 
   function handleChange(e) {
     const {
@@ -13,32 +17,25 @@ export default function LoginPage() {
     dispatch(changeLoginField(name, value));
   }
 
+  function handleClick() {
+    dispatch(requestLogin());
+  }
+
+  function handleLogout() {
+    dispatch(logout());
+  }
+
   return (
-    <div>
-      <h1>로그인</h1>
-      <div>
-        <label htmlFor="login-email">Email</label>
-        <input
-          type="email"
-          id="login-email"
-          name="email"
-          value={email}
-          onChange={handleChange}
+    <>
+      {!accessToken ? (
+        <LoginForm
+          loginField={loginField}
+          handleChange={handleChange}
+          handleClick={handleClick}
         />
-      </div>
-
-      <div>
-        <label htmlFor="login-password">Password</label>
-        <input
-          type="password"
-          id="login-password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-      </div>
-
-      <button type="button">인증</button>
-    </div>
+      ) : (
+        <LogoutForm handleLogout={handleLogout} />
+      )}
+    </>
   );
 }

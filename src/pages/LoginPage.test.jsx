@@ -21,7 +21,7 @@ describe('LoginPage', () => {
             email: '',
             password: '',
           },
-          accessToken: '',
+          accessToken: given.accessToken,
         },
       })
     );
@@ -63,6 +63,7 @@ describe('LoginPage', () => {
 
   context('when Logged in', () => {
     it('render Logout button', () => {
+      given('accessToken', () => '주어진토큰목걸이');
       const { getByText } = render(<LoginPage />);
 
       fireEvent.click(getByText('떠나기'));

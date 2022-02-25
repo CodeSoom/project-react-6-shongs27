@@ -79,5 +79,7 @@
       "category": "js",
       "likes": "10"
     }
-  ]
+  ],
+
+  "login": { "accessToken": "wowToken" }
 }

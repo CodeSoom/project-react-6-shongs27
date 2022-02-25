@@ -75,6 +75,13 @@ const reducer = {
     };
   },
 
+  reverseClicked(state) {
+    return {
+      ...state,
+      clicked: !state.clicked,
+    };
+  },
+
   changeLoginField(state, { payload: { name, value } }) {
     return {
       ...state,
@@ -88,10 +95,23 @@ const reducer = {
     };
   },
 
-  reverseClicked(state) {
+  setAccessToken(state, { payload: { accessToken } }) {
     return {
       ...state,
-      clicked: !state.clicked,
+      login: {
+        ...state.login,
+        accessToken,
+      },
+    };
+  },
+
+  logout(state) {
+    return {
+      ...state,
+      login: {
+        ...state.login,
+        accessToken: '',
+      },
     };
   },
 };
