@@ -1,13 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
   // entry: path.resolve(__dirname, 'src/index.jsx'),
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '.',
-  },
+  // output: {
+  // path: path.resolve(__dirname, 'dist'),
+  // publicPath: '/',
+  // },
   module: {
     rules: [
       {
@@ -36,7 +37,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: 'public/index.html',
+    }),
+    new webpack.DefinePlugin({
+      baseName: JSON.stringify('/'),
+
+      // baseName: JSON.stringify('/project-react-6-shongs27'),
     }),
   ],
 };
