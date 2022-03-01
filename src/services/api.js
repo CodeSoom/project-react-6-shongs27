@@ -41,6 +41,16 @@ export async function postLogin(email, address) {
   //   },
   // });
   const { accessToken } = await response.json();
-  console.log(accessToken);
+
   return accessToken;
+}
+
+export async function postArticle(postForm) {
+  const response = await fetch('http://localhost:3000/post', {
+    method: 'POST',
+    body: JSON.stringify(postForm),
+    header: {
+      'Content-type': 'multipart/form-data',
+    },
+  });
 }

@@ -29,7 +29,6 @@
       "likes": "200"
     }
   ],
-
   "react": [
     {
       "id": 1,
@@ -46,7 +45,6 @@
       "likes": "10"
     }
   ],
-
   "js": [
     {
       "id": 1,
@@ -63,7 +61,6 @@
       "likes": "10"
     }
   ],
-
   "test": [
     {
       "id": 1,
@@ -80,6 +77,8 @@
       "likes": "10"
     }
   ],
-
-  "login": { "accessToken": "wowToken" }
+  "login": {
+    "accessToken": "wowToken"
+  },
+  "post": {}
 }

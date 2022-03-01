@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const { bindActionCreators } = require('redux');
 
 module.exports = {
   mode: 'development',
@@ -16,21 +17,26 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+      // {
+      //   test: /\.css$/i,
+      //   use: ['style-loader', 'css-loader'],
+      // },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    // alias: {
-    //   '@': path.resolve(__dirname, ''),
-    //   '@components': path.resolve(__dirname, 'src/components'),
-    //   '@containers': path.resolve(__dirname, 'src/containers'),
-    //   '@pages': path.resolve(__dirname, 'src/pages'),
-    //   '@modules': path.resolve(__dirname, 'src/modules'),
-    //   '@libs': path.resolve(__dirname, 'src/libs'),
-    //   '@utils': path.resolve(__dirname, 'src/utils'),
-    //   '@plugins': path.resolve(__dirname, 'src/plugins'),
-    //   '@styles': path.resolve(__dirname, 'src/styles'),
-    // },
+    alias: {
+      '@actions': path.resolve(__dirname, 'src/actions'),
+      //   '@': path.resolve(__dirname, ''),
+      //   '@components': path.resolve(__dirname, 'src/components'),
+      //   '@containers': path.resolve(__dirname, 'src/containers'),
+      //   '@pages': path.resolve(__dirname, 'src/pages'),
+      //   '@modules': path.resolve(__dirname, 'src/modules'),
+      //   '@libs': path.resolve(__dirname, 'src/libs'),
+      //   '@utils': path.resolve(__dirname, 'src/utils'),
+      //   '@plugins': path.resolve(__dirname, 'src/plugins'),
+      //   '@styles': path.resolve(__dirname, 'src/styles'),
+    },
   },
   devServer: {
     historyApiFallback: true,

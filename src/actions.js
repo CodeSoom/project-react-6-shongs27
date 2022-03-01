@@ -4,6 +4,7 @@ import {
   fetchPopularPosts,
   fetchRecentPosts,
   fetchSearchTarget,
+  postArticle,
   postLogin,
 } from './services/api';
 
@@ -135,5 +136,11 @@ export function logout() {
   localStorage.removeItem('blogToken');
   return {
     type: 'logout',
+  };
+}
+
+export function registerArticle(formData) {
+  return async (dispatch, getState) => {
+    const result = await postArticle(formData);
   };
 }

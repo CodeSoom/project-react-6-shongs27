@@ -4,6 +4,13 @@ import { changeLoginField, logout, requestLogin } from '../actions';
 import LoginForm from '../components/LoginForm';
 import LogoutForm from '../components/LogoutForm';
 
+import styled from '@emotion/styled';
+const Container = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
 export default function LoginPage() {
   const dispatch = useDispatch();
   const loginField = useSelector((state) => state.login.loginField);
@@ -25,8 +32,16 @@ export default function LoginPage() {
     dispatch(logout());
   }
 
+  function handleUpload(e) {
+    e.preventDefault();
+
+    console.log(e);
+    console.log(e.target);
+    console.log(e.target.value);
+  }
+
   return (
-    <>
+    <Container>
       {!accessToken ? (
         <LoginForm
           loginField={loginField}
@@ -34,8 +49,8 @@ export default function LoginPage() {
           handleClick={handleClick}
         />
       ) : (
-        <LogoutForm handleLogout={handleLogout} />
+        <LogoutForm handleLogout={handleLogout} handleUpload={handleUpload} />
       )}
-    </>
+    </Container>
   );
 }
