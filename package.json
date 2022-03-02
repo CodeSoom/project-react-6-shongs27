@@ -8,6 +8,7 @@
     "start": "webpack serve",
     "test:unit": "jest --watchAll",
     "back": "cd back && npm start",
+    "jsonServer": "cd back && npm run dev",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

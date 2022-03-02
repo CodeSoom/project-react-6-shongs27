@@ -4,12 +4,14 @@
   "description": "",
   "main": "db.js",
   "scripts": {
-    "start": "json-server db.json --routes routes.json --watch"
+    "start": "nodemon app.js",
+    "dev": "json-server json/db.json --routes json/routes.json --port 8000 --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.3",
     "json-server": "^0.17.0"
   }
 }
