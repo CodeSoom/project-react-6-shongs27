@@ -53,4 +53,6 @@ export async function postArticle(postForm) {
       'Content-type': 'multipart/form-data',
     },
   });
+
+  return response.ok;
 }

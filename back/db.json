@@ -5,7 +5,8 @@
       "title": "props에 대하여",
       "content": "컴포넌트는 props를 통해 데이터를 전달한다",
       "category": "react",
-      "likes": "10"
+      "likes": "10",
+      "markdown": ""
     },
     {
       "id": 2,

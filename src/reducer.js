@@ -4,7 +4,7 @@ const initialState = {
     js: [],
     react: [],
   },
-  page: { id: '', title: '', content: '' },
+  page: { id: '', title: '', content: '', markdown: '' },
   posts: {
     recentPosts: [],
     popularPosts: [],
