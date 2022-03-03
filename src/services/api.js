@@ -36,7 +36,7 @@ export async function postLogin(email, address) {
   // const response = await fetch('http://localhost:8000/login', {
   //   method: 'POST',
   //   body: JSON.stringify({ email, address }),
-  //   header: {
+  //   headers: {
   //     'Content-type': 'application/json',
   //   },
   // });
@@ -49,7 +49,7 @@ export async function postArticle(postForm) {
   const response = await fetch('http://localhost:8000/post', {
     method: 'POST',
     body: JSON.stringify(postForm),
-    header: {
+    headers: {
       'Content-type': 'multipart/form-data',
     },
   });
