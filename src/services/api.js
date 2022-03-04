@@ -30,29 +30,28 @@ export async function fetchSearchTarget(searchField) {
   return data;
 }
 
-export async function postLogin(email, address) {
-  const response = await fetch('http://localhost:8000/login');
+export async function postLogin(email, password) {
+  const response = await fetch('http://localhost:3000/login', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
 
-  // const response = await fetch('http://localhost:8000/login', {
-  //   method: 'POST',
-  //   body: JSON.stringify({ email, address }),
-  //   headers: {
-  //     'Content-type': 'application/json',
-  //   },
-  // });
-  const { accessToken } = await response.json();
+  const { trial, accessToken } = await response.json();
 
-  return accessToken;
+  if (trial) return accessToken;
 }
 
 export async function postArticle(postForm) {
-  const response = await fetch('http://localhost:8000/post', {
+  const response = await fetch('http://localhost:3000/post', {
     method: 'POST',
-    body: JSON.stringify(postForm),
+    body: postForm,
     headers: {
       'Content-type': 'multipart/form-data',
     },
   });
 
-  return response.ok;
+  return response;
 }

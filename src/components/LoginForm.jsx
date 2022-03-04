@@ -1,5 +1,8 @@
+import { message } from 'antd';
+
 export default function LoginForm({ loginField, handleChange, handleClick }) {
   const { email, password } = loginField;
+
   return (
     <div>
       <h1>로그인</h1>
