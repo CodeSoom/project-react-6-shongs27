@@ -146,9 +146,8 @@ export function logout() {
   };
 }
 
-export function registerArticle(formData) {
+export function registerArticle(form) {
   return async (dispatch, getState) => {
-    const result = await postArticle(formData);
-    console.log(result, '어떻게 생겨먹었는가');
+    const result = await postArticle(form);
   };
 }

@@ -1,20 +1,33 @@
 export default function LogoutForm({ handleLogout, handleUpload }) {
   function onSubmit(e) {
     e.preventDefault();
+    const category = e.target[0].value;
+    const file = e.target[1].files[0];
 
-    const formData = new FormData();
-    formData.append('category', e.target[0].value);
-    formData.append('file', e.target[1].files[0]);
+    const reader = new FileReader();
+    reader.onload = function () {
+      const form = {
+        category: category,
+        markdown: reader.result,
+      };
+      handleUpload(form);
+    };
+    reader.readAsText(file);
 
-    handleUpload(formData);
+    // const formData = new FormData();
+    // formData.append('category', e.target[0].value);
+    // formData.append('file', e.target[1].files[0]);
+    // handleUpload(formData);
   }
 
   return (
     <>
-      <button type="button" onClick={handleLogout}>
-        로그아웃
-      </button>
-      <div>
+      <div className="btn-logout">
+        <button type="button" onClick={handleLogout}>
+          로그아웃
+        </button>
+      </div>
+      <div className="form-upload">
         <form onSubmit={onSubmit}>
           <div>
             <label htmlFor="select-category">카테고리</label>

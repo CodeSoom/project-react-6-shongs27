@@ -11,11 +11,7 @@ import LogoutForm from '../components/LogoutForm';
 
 import styled from '@emotion/styled';
 
-const Container = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
+const Container = styled.div({});
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -38,8 +34,8 @@ export default function LoginPage() {
     dispatch(logout());
   }
 
-  function handleUpload(formData) {
-    dispatch(registerArticle(formData));
+  function handleUpload(form) {
+    dispatch(registerArticle(form));
   }
 
   return (

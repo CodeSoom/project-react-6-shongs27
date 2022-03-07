@@ -44,12 +44,12 @@ export async function postLogin(email, password) {
   if (trial) return accessToken;
 }
 
-export async function postArticle(postForm) {
+export async function postArticle(form) {
   const response = await fetch('http://localhost:3000/post', {
     method: 'POST',
-    body: postForm,
+    body: JSON.stringify(form),
     headers: {
-      'Content-type': 'multipart/form-data',
+      'Content-type': 'application/json',
     },
   });
 
