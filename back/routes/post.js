@@ -5,17 +5,21 @@ const Post = require('../models/Post');
 // /post
 
 router.get('/home', (req, res) => {
-  Post.find().exec((err, posts) => {
-    if (err) return res.status(400).send(err);
-    res.status(200).json({ trial: true, posts });
-  });
+  Post.find()
+    .sort({ _id: -1 })
+    .exec((err, posts) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ trial: true, posts });
+    });
 });
 
 router.get('/:category', (req, res) => {
-  Post.find({ category: req.params.category }).exec((err, posts) => {
-    if (err) return res.status(400).send(err);
-    res.status(200).json({ trial: true, posts });
-  });
+  Post.find({ category: req.params.category })
+    .sort({ _id: -1 })
+    .exec((err, posts) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ trial: true, posts });
+    });
 });
 
 router.post('/', (req, res) => {

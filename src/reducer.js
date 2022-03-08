@@ -1,11 +1,9 @@
 const initialState = {
-  pages: {
+  page: { title: '', description: '' },
+  posts: {
     home: [],
     js: [],
     react: [],
-  },
-  page: { id: '', title: '', content: '', markdown: '' },
-  posts: {
     recentPosts: [],
     popularPosts: [],
   },
@@ -18,18 +16,19 @@ const initialState = {
       email: '',
       password: '',
     },
+    userId: '',
     accessToken: '',
   },
   clicked: false,
 };
 
 const reducer = {
-  setPageContents(state, { payload: { pageName, pageContents } }) {
+  setPagesPosts(state, { payload: { category, pagePosts } }) {
     return {
       ...state,
-      pages: {
+      posts: {
         ...state.pages,
-        [pageName]: pageContents,
+        [category]: pagePosts,
       },
     };
   },
@@ -95,11 +94,12 @@ const reducer = {
     };
   },
 
-  setAccessToken(state, { payload: { accessToken } }) {
+  setAccessToken(state, { payload: { userId, accessToken } }) {
     return {
       ...state,
       login: {
         ...state.login,
+        userId,
         accessToken,
       },
     };
@@ -110,7 +110,18 @@ const reducer = {
       ...state,
       login: {
         ...state.login,
+        userId: '',
         accessToken: '',
+      },
+    };
+  },
+
+  changePostField(state, { payload: { name, value } }) {
+    return {
+      ...state,
+      page: {
+        ...state.page,
+        [name]: value,
       },
     };
   },

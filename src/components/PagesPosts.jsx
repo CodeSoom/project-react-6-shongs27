@@ -17,12 +17,12 @@ const Item = styled.div({
   paddingBottom: '22px',
 });
 
-export default function PageContents({ articleTitle, pageContents }) {
+export default function PagesPosts({ articleTitle, pagesPosts }) {
   return (
     <Article id="content">
       <h2>{articleTitle}</h2>
-      {pageContents &&
-        pageContents.map(({ id, title, content, category }) => {
+      {pagesPosts &&
+        pagesPosts.map(({ id, title, content, category }) => {
           //excerpt 기능
           if (content.length > 200) {
             content = content.substring(0, 200) + '...';

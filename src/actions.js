@@ -1,6 +1,6 @@
 import { message } from 'antd';
 import {
-  fetchPageContents,
+  fetchPagesPosts,
   fetchPageDetail,
   fetchPopularPosts,
   fetchRecentPosts,
@@ -8,21 +8,21 @@ import {
   postArticle,
   postLogin,
 } from './services/api';
-import { setItem } from './services/storage';
+import { setItem, removeItem } from './services/storage';
 
-export function setPageContents(pageName, pageContents) {
+export function setPagesPosts(category, pagePosts) {
   return {
-    type: 'setPageContents',
-    payload: { pageName, pageContents },
+    type: 'setPagesPosts',
+    payload: { category, pagePosts },
   };
 }
 
-export function getPageContents(category) {
+export function getPagesPosts(category) {
   return async (dispatch) => {
-    const pageContents = await fetchPageContents(category);
-    // result를 그대로 return하고 끝내도 되지만,
+    const { trial, posts } = await fetchPagesPosts(category);
+    // 결과값을 그대로 리턴해서 보여줘도 되지만
     // useSelector로 데이터 변화 감지하려면 set하는 dispatch로 연결하는 것이 낫다
-    dispatch(setPageContents(category, pageContents));
+    dispatch(setPagesPosts(category, posts));
   };
 }
 
@@ -121,33 +121,49 @@ export function requestLogin() {
       },
     } = getState();
 
-    const accessToken = await postLogin(email, password);
+    const { userId, accessToken } = await postLogin(email, password);
 
     if (accessToken) {
       setItem('accessToken', accessToken);
-      dispatch(setAccessToken(accessToken));
+      setItem('userId', userId);
+      dispatch(setAccessToken(accessToken, userId));
     } else {
       message.info('유저가 없거나 비밀번호가 틀렸습니다');
     }
   };
 }
 
-export function setAccessToken(accessToken) {
+export function setAccessToken(accessToken, userId) {
   return {
     type: 'setAccessToken',
-    payload: { accessToken },
+    payload: { userId, accessToken },
   };
 }
 
 export function logout() {
-  localStorage.removeItem('accessToken');
+  removeItem('userId');
+  removeItem('accessToken');
   return {
     type: 'logout',
   };
 }
 
-export function registerArticle(form) {
+export function registerPost(form) {
   return async (dispatch, getState) => {
-    const result = await postArticle(form);
+    const post = await postArticle(form);
+
+    if (trial) {
+      message.info('글을 성공적으로 등록했습니다');
+      getPagesPosts(post.category);
+    } else {
+      message.fail('글 올리는걸 실패했습니다');
+    }
+  };
+}
+
+export function changePostField(name, value) {
+  return {
+    type: 'changePostField',
+    payload: { name, value },
   };
 }

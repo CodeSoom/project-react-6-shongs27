@@ -1,7 +1,6 @@
-export async function fetchPageContents(category) {
-  const response = await fetch(`http://localhost:8000/${category}`);
+export async function fetchPagesPosts(category) {
+  const response = await fetch(`http://localhost:3000/posts/${category}`);
   const data = await response.json();
-
   return data;
 }
 
@@ -39,19 +38,19 @@ export async function postLogin(email, password) {
     },
   });
 
-  const { trial, accessToken } = await response.json();
+  const { trial, accessToken, userId } = await response.json();
 
-  if (trial) return accessToken;
+  if (trial) return { userId, accessToken };
 }
 
 export async function postArticle(form) {
-  const response = await fetch('http://localhost:3000/post', {
+  const response = await fetch('http://localhost:3000/posts', {
     method: 'POST',
     body: JSON.stringify(form),
     headers: {
       'Content-type': 'application/json',
     },
   });
-
-  return response;
+  const data = await response.json();
+  return data;
 }
