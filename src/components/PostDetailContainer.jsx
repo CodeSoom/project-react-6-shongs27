@@ -6,16 +6,16 @@ import { useParams } from 'react-router-dom';
 
 import { getPostDetail } from '../actions';
 
-import PageDetail from './PageDetail';
+import PostDetail from './PostDetail';
 
-export default function PageDetailContainer() {
+export default function PostDetailContainer() {
   const dispatch = useDispatch();
   const params = useParams();
-  const pageDetail = useSelector((state) => state.post);
+  const postDetail = useSelector((state) => state.post);
 
   useEffect(() => {
     dispatch(getPostDetail(params));
   }, [params]);
 
-  return <PageDetail pageDetail={pageDetail} />;
+  return <PostDetail postDetail={postDetail} />;
 }
