@@ -150,7 +150,7 @@ export function logout() {
 
 export function registerPost(form) {
   return async (dispatch, getState) => {
-    const post = await postArticle(form);
+    const { trial, post } = await postArticle(form);
 
     if (trial) {
       message.info('글을 성공적으로 등록했습니다');

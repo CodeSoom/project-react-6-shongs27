@@ -4,6 +4,7 @@ export async function fetchPagesPosts(category) {
   return data;
 }
 
+//detail은 안가져와도 되겠는데
 export async function fetchPageDetail(category, id) {
   const response = await fetch(`http://localhost:8000/${category}/${id}`);
   const data = await response.json();
@@ -11,15 +12,21 @@ export async function fetchPageDetail(category, id) {
 }
 
 export async function fetchRecentPosts() {
-  const response = await fetch('http://localhost:8000/recentPosts');
-  const data = await response.json();
-  return data;
+  const response = await fetch('http://localhost:3000/posts/recentPosts');
+  const { trial, posts } = await response.json();
+
+  if (trial) {
+    return posts;
+  }
 }
 
 export async function fetchPopularPosts() {
-  const response = await fetch('http://localhost:8000/popularPosts');
-  const data = await response.json();
-  return data;
+  const response = await fetch('http://localhost:3000/posts/popularPosts');
+  const { trial, posts } = await response.json();
+
+  if (trial) {
+    return posts;
+  }
 }
 
 export async function fetchSearchTarget(searchField) {
@@ -51,6 +58,9 @@ export async function postArticle(form) {
       'Content-type': 'application/json',
     },
   });
-  const data = await response.json();
-  return data;
+  const { trial, post } = await response.json();
+
+  if (trial) {
+    return { trial, post };
+  }
 }
