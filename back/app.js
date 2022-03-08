@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 
 app.use('/login', require('./routes/user'));
 app.use('/posts', require('./routes/post'));
+app.use('/likes', require('./routes/like'));
 
 // app.use("/uploads", express.static("uploads"));
 
