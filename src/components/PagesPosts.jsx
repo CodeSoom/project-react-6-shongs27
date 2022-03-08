@@ -19,22 +19,22 @@ const Item = styled.div({
 
 export default function PagesPosts({ articleTitle, pagesPosts }) {
   return (
-    <Article id="content">
+    <Article>
       <h2>{articleTitle}</h2>
       {pagesPosts &&
-        pagesPosts.map(({ id, title, content, category }) => {
+        pagesPosts.map(({ _id, title, description, category }) => {
           //excerpt 기능
-          if (content.length > 200) {
-            content = content.substring(0, 200) + '...';
+          if (description.length > 200) {
+            description = description.substring(0, 200) + '...';
           }
 
           return (
-            <Item key={id} className="post_item">
+            <Item key={_id} className="post_item">
               <span>{title}</span>
               <p className="post_content" style={{ color: '#666' }}>
-                {content}
+                {description}
               </p>
-              <Link to={`/${category}/${id}`}>더보기 &gt;</Link>
+              <Link to={`/${category}/${_id}`}>더보기 &gt;</Link>
             </Item>
           );
         })}

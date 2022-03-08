@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import {
   fetchPagesPosts,
-  fetchPageDetail,
+  fetchPostDetail,
   fetchPopularPosts,
   fetchRecentPosts,
   fetchSearchTarget,
@@ -26,20 +26,22 @@ export function getPagesPosts(category) {
   };
 }
 
-export function setPageDetail(pageDetail) {
+export function setPostDetail(postDetail) {
   return {
-    type: 'setPageDetail',
-    payload: { pageDetail },
+    type: 'setPostDetail',
+    payload: { postDetail },
   };
 }
 
-export function getPageDetail(params) {
+export function getPostDetail(params) {
   return async (dispatch, getState) => {
     const { category, id } = params;
 
-    const pageDetail = await fetchPageDetail(category, id);
+    const { trial, post } = await fetchPostDetail(category, id);
 
-    dispatch(setPageDetail(pageDetail));
+    if (trial) {
+      dispatch(setPostDetail(post));
+    }
   };
 }
 

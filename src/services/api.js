@@ -4,9 +4,8 @@ export async function fetchPagesPosts(category) {
   return data;
 }
 
-//detail은 안가져와도 되겠는데
-export async function fetchPageDetail(category, id) {
-  const response = await fetch(`http://localhost:8000/${category}/${id}`);
+export async function fetchPostDetail(category, id) {
+  const response = await fetch(`http://localhost:3000/posts/${category}/${id}`);
   const data = await response.json();
   return data;
 }

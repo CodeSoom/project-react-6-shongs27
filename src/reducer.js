@@ -1,5 +1,6 @@
 const initialState = {
   page: { title: '', description: '' },
+  post: '',
   posts: {
     home: [],
     js: [],
@@ -27,16 +28,16 @@ const reducer = {
     return {
       ...state,
       posts: {
-        ...state.pages,
+        ...state.posts,
         [category]: pagePosts,
       },
     };
   },
 
-  setPageDetail(state, { payload: { pageDetail } }) {
+  setPostDetail(state, { payload: { postDetail } }) {
     return {
       ...state,
-      page: pageDetail,
+      post: postDetail,
     };
   },
 
