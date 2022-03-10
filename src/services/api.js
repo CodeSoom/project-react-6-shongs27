@@ -1,17 +1,19 @@
 export async function fetchPagesPosts(category) {
-  const response = await fetch(`http://localhost:3000/posts/${category}`);
+  const response = await fetch(`${process.env.backAPI}/posts/${category}`);
   const data = await response.json();
   return data;
 }
 
 export async function fetchPostDetail(category, id) {
-  const response = await fetch(`http://localhost:3000/posts/${category}/${id}`);
+  const response = await fetch(
+    `${process.env.backAPI}/posts/${category}/${id}`
+  );
   const data = await response.json();
   return data;
 }
 
 export async function fetchRecentPosts() {
-  const response = await fetch('http://localhost:3000/posts/recentPosts');
+  const response = await fetch(`${process.env.backAPI}/posts/recentPosts`);
   const { trial, posts } = await response.json();
 
   if (trial) {
@@ -20,7 +22,7 @@ export async function fetchRecentPosts() {
 }
 
 export async function fetchPopularPosts() {
-  const response = await fetch('http://localhost:3000/posts/popularPosts');
+  const response = await fetch(`${process.env.backAPI}/posts/popularPosts`);
   const { trial, posts } = await response.json();
 
   if (trial) {
@@ -36,7 +38,7 @@ export async function fetchSearchTarget(searchField) {
 }
 
 export async function postLogin(email, password) {
-  const response = await fetch('http://localhost:3000/login', {
+  const response = await fetch(`${process.env.backAPI}/login`, {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {
@@ -50,7 +52,7 @@ export async function postLogin(email, password) {
 }
 
 export async function postArticle(form) {
-  const response = await fetch('http://localhost:3000/posts', {
+  const response = await fetch(`${process.env.backAPI}/posts`, {
     method: 'POST',
     body: JSON.stringify(form),
     headers: {
