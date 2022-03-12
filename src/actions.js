@@ -4,7 +4,7 @@ import {
   fetchPostDetail,
   fetchPopularPosts,
   fetchRecentPosts,
-  fetchSearchTarget,
+  fetchSearchField,
   postArticle,
   postLogin,
 } from './services/api';
@@ -83,22 +83,27 @@ export function changeSearchField(searchField) {
   };
 }
 
-export function getSearchTarget() {
+export function getSearchField() {
   return async (dispatch, getState) => {
     const {
       search: { searchField },
     } = getState();
-    const searchTarget = await fetchSearchTarget(searchField);
+    const searchedPosts = await fetchSearchField(searchField);
 
-    dispatch(setSearchTarget(searchTarget));
+    if (searchedPosts.length) {
+      dispatch(setSearchTarget(searchedPosts));
+    } else {
+      dispatch(setSearchTarget([searchedPosts]));
+    }
+
     dispatch(changeSearchField(''));
   };
 }
 
-export function setSearchTarget(searchTarget) {
+export function setSearchTarget(searchedPosts) {
   return {
     type: 'setSearchTarget',
-    payload: { searchTarget },
+    payload: { searchedPosts },
   };
 }
 

@@ -9,6 +9,7 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 app.use(cors({ origin: '*', credentials: true }));
 app.use(express.json());
+app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose

@@ -2,6 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Post = require('../models/Post');
 
+router.post('/search', (req, res) => {
+  Post.findOne({ $text: { $search: req.body } }).exec((err, posts) => {
+    if (err) return res.status(400).send(err);
+
+    res.status(200).json({ trial: true, posts });
+  });
+});
+
 router.get('/:category/:id', (req, res) => {
   Post.findOne({ _id: req.params.id }).exec((err, post) => {
     if (err) return res.status(400).send(err);
@@ -9,6 +17,7 @@ router.get('/:category/:id', (req, res) => {
     res.status(200).json({ trial: true, post });
   });
 });
+
 router.get('/popularPosts', (req, res) => {
   Post.find()
     .where('likes')

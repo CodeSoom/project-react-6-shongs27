@@ -30,11 +30,19 @@ export async function fetchPopularPosts() {
   }
 }
 
-export async function fetchSearchTarget(searchField) {
-  //searchField를 어떻게 적용 시킬까?
-  const response = await fetch(`http://localhost:8000/search`);
-  const data = await response.json();
-  return data;
+export async function fetchSearchField(searchField) {
+  const response = await fetch(`${process.env.backAPI}/posts/search`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+    body: searchField,
+  });
+
+  const { trial, posts } = await response.json();
+  if (trial) {
+    return posts;
+  }
 }
 
 export async function postLogin(email, password) {

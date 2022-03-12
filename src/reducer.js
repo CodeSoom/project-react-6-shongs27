@@ -1,6 +1,4 @@
 const initialState = {
-  page: { title: '', description: '' },
-  post: '',
   posts: {
     home: [],
     js: [],
@@ -10,7 +8,7 @@ const initialState = {
   },
   search: {
     searchField: '',
-    searchTarget: [],
+    searchedPosts: [],
   },
   login: {
     loginField: {
@@ -20,6 +18,8 @@ const initialState = {
     userId: '',
     accessToken: '',
   },
+  page: { title: '', description: '' },
+  post: '',
   clicked: false,
 };
 
@@ -65,12 +65,12 @@ const reducer = {
     };
   },
 
-  setSearchTarget(state, { payload: { searchTarget } }) {
+  setSearchTarget(state, { payload: { searchedPosts } }) {
     return {
       ...state,
       search: {
         ...state.search,
-        searchTarget,
+        searchedPosts,
       },
     };
   },
