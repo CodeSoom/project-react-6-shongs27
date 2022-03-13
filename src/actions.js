@@ -7,6 +7,7 @@ import {
   fetchSearchField,
   postArticle,
   postLogin,
+  fetchGoogleAnalytics,
 } from './services/api';
 import { setItem, removeItem } from './services/storage';
 
@@ -172,5 +173,21 @@ export function changePostField(name, value) {
   return {
     type: 'changePostField',
     payload: { name, value },
+  };
+}
+
+export function getGoogleAnalytics() {
+  return async (dispatch, getState) => {
+    const data = await fetchGoogleAnalytics();
+    console.log('구글 애널리틱스', data);
+
+    // dispatch(setGoogleAnalytics(data));
+  };
+}
+
+export function setGoogleAnalytics(metrics) {
+  return {
+    type: 'setGoogleAnalytics',
+    payload: { metrics },
   };
 }

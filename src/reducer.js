@@ -1,4 +1,5 @@
 const initialState = {
+  GA: {},
   posts: {
     home: [],
     js: [],
