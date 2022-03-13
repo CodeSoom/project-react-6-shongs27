@@ -73,3 +73,13 @@ export async function postArticle(form) {
     return { trial, post };
   }
 }
+
+export async function fetchGoogleAnalytics() {
+  const result = await fetch(
+    'https://www.googleapis.com/analytics/v3/data/ga?ids=ga%3A262553607&dimensions=ga%3AuserType%2Cga%3AsessionsToTransaction&metrics=ga%3Asessions%2Cga%3AsessionDuration&start-date=30daysAgo&end-date=today'
+  );
+
+  const data = await result.json();
+
+  return data;
+}
