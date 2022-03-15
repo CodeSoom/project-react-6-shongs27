@@ -178,16 +178,24 @@ export function changePostField(name, value) {
 
 export function getGoogleAnalytics() {
   return async (dispatch, getState) => {
-    const data = await fetchGoogleAnalytics();
-    console.log('구글 애널리틱스', data);
+    const { rows } = await fetchGoogleAnalytics();
 
-    // dispatch(setGoogleAnalytics(data));
+    const activeUsers = {
+      todayActiveUser: rows[0][1],
+      yesterDayActiveUser: rows[1][1],
+      oneMonthActiveUser: rows.reduce(
+        (prev, current) => prev + Number(current[1]),
+        0
+      ),
+    };
+
+    dispatch(setGoogleAnalytics(activeUsers));
   };
 }
 
-export function setGoogleAnalytics(metrics) {
+export function setGoogleAnalytics(activeUsers) {
   return {
     type: 'setGoogleAnalytics',
-    payload: { metrics },
+    payload: { activeUsers },
   };
 }

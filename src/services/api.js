@@ -76,9 +76,10 @@ export async function postArticle(form) {
 
 export async function fetchGoogleAnalytics() {
   const result = await fetch(
-    'https://www.googleapis.com/analytics/v3/data/ga?access_token=ya29.A0ARrdaM8QC6-nNfVy_irXXM3kY48rhGrqgKoiVtBGq07rqdfYGhIwnK6chjbTFdsynuzyqafacXkjE1zndcM5Msby--XaCkfk0P81X1FH_ZQRFRP98V00kCotXoAQPNZxk1HX7Ae4lz6-tsKZlIt9ECLNplGq&ids=ga%3A262553607&dimensions=ga%3AuserType%2Cga%3AsessionsToTransaction&metrics=ga%3Asessions%2Cga%3AsessionDuration&start-date=30daysAgo&end-date=today'
+    'https://www.googleapis.com/analytics/v3/data/ga?access_token=ya29.A0ARrdaM9HJMgpaHKJnjuxtazKFWrQOs9BGQqG6zQxxkVN2-DnpNKX3wG3aFl29lEYKVtOSMnzJ9WND5mqbnRf1F9B_GZ9x6pgyOG7QsWiC54hloEwnl_x2M1RxV-ElexrCm4ZxengAZtgKzh45quLkznuxoEHwA&ids=ga%3A262553607&dimensions=ga%3Adate&metrics=ga%3A1dayUsers&sort=-ga%3A1dayUsers&start-date=30daysAgo&end-date=today'
   );
 
   const data = await result.json();
+
   return data;
 }
