@@ -38,11 +38,9 @@ export async function fetchSearchField(searchField) {
     },
     body: searchField,
   });
+  const data = await response.json();
 
-  const { trial, posts } = await response.json();
-  if (trial) {
-    return posts;
-  }
+  return data;
 }
 
 export async function postLogin(email, password) {

@@ -1,13 +1,21 @@
 import styled from '@emotion/styled';
 import AnalysticSection from './AnalysticSection';
-import SearchSection from './SearchSection';
+import SearchInput from './SearchInput';
 
-export const Container = styled.div({
+const Container = styled.div({
   float: 'left',
   width: '33.3%',
   minHeight: '300px',
   paddingLeft: '36px',
   boxSizing: 'border-box',
+});
+
+const Search = styled.div({
+  marginBottom: '57px',
+
+  '& a': {
+    padding: '5px',
+  },
 });
 
 export default function ExtraSection({
@@ -18,11 +26,15 @@ export default function ExtraSection({
 }) {
   return (
     <Container>
-      <SearchSection
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        searchField={searchField}
-      />
+      <Search>
+        <h3>검색</h3>
+        <SearchInput
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          searchField={searchField}
+        />
+      </Search>
+
       <AnalysticSection dailyActiveUsers={dailyActiveUsers} />
     </Container>
   );

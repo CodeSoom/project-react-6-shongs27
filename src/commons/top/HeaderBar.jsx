@@ -10,6 +10,9 @@ import {
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
+import { useState } from 'react';
+
+import SearchInput from '../aside/sections/SearchInput';
 
 const ListLeft = styled.ul({
   display: 'flex',
@@ -17,18 +20,17 @@ const ListLeft = styled.ul({
   backgroundColor: 'black',
   color: 'gray',
   listStyle: 'none',
+
   margin: 0,
   padding: '0 1em 0',
-});
 
-const Item = styled.li({
-  marginRight: '1em',
-  fontWeight: 'bold',
+  '& li': {
+    fontWeight: 'bold',
+    margin: '.4em 1em 0 0',
 
-  marginTop: '.4em',
-
-  '& span': {
-    marginLeft: '.5em',
+    '& span': {
+      marginLeft: '.5em',
+    },
   },
 });
 
@@ -46,7 +48,7 @@ const ListRight = styled.ul({
   top: 0,
   right: 0,
 
-  borderRadius: '20px',
+  borderRadius: '30px',
   zIndex: 1,
 
   '& span': {
@@ -62,29 +64,46 @@ const ListRight = styled.ul({
 });
 
 export default function HeaderBar() {
+  const [searchSelected, setSearchSelected] = useState(false);
+
+  function handleClick() {
+    setSearchSelected((prev) => !prev);
+  }
+
+  if (searchSelected) {
+    return (
+      <ListLeft>
+        <span>
+          {' '}
+          <SearchInput />
+        </span>
+      </ListLeft>
+    );
+  }
+
   return (
     <>
       <ListLeft>
-        <Item>
+        <li>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
-        </Item>
+        </li>
 
-        <Item>
+        <li>
           <FontAwesomeIcon icon={faFile} size="lg" />
           <span>소개</span>
-        </Item>
+        </li>
 
-        <Item>
+        <li>
           <FontAwesomeIcon icon={faGamepad} size="lg" />
           <span>게임</span>
-        </Item>
+        </li>
 
-        <Item>
+        <li>
           <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
           <span>방명록</span>
-        </Item>
+        </li>
       </ListLeft>
 
       <ListRight>
@@ -95,7 +114,7 @@ export default function HeaderBar() {
         <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
 
         <span>
-          <FontAwesomeIcon icon={faSearch} size="lg" />
+          <FontAwesomeIcon icon={faSearch} size="lg" onClick={handleClick} />
         </span>
       </ListRight>
     </>

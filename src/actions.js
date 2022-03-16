@@ -89,12 +89,13 @@ export function getSearchField() {
     const {
       search: { searchField },
     } = getState();
-    const searchedPosts = await fetchSearchField(searchField);
 
-    if (searchedPosts.length) {
-      dispatch(setSearchTarget(searchedPosts));
+    const { trial, posts } = await fetchSearchField(searchField);
+
+    if (trial) {
+      dispatch(setSearchTarget(posts));
     } else {
-      dispatch(setSearchTarget([searchedPosts]));
+      dispatch(setSearchTarget(''));
     }
 
     dispatch(changeSearchField(''));
