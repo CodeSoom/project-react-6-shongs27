@@ -52,6 +52,7 @@ export default function FooterContainer() {
 
   function handleSubmit() {
     dispatch(getSearchField());
+    window.scrollTo(0, 0);
   }
 
   return (
