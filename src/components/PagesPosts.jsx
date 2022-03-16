@@ -15,6 +15,12 @@ const Item = styled.div({
   borderBottom: '1px solid rgb(230, 230, 230)',
   paddingTop: '30px',
   paddingBottom: '22px',
+
+  '& a': {
+    textDecoration: 'none',
+    color: 'black',
+    fontSize: '85%',
+  },
 });
 
 export default function PagesPosts({ articleTitle, pagesPosts = [] }) {
