@@ -14,6 +14,11 @@ import { useState } from 'react';
 
 import SearchInput from '../aside/sections/SearchInput';
 
+const SearchInput2 = styled(SearchInput)({
+  color: 'red',
+  backgroundColor: 'red',
+});
+
 const ListLeft = styled.ul({
   display: 'flex',
   height: '2.4rem',
@@ -73,10 +78,7 @@ export default function HeaderBar() {
   if (searchSelected) {
     return (
       <ListLeft>
-        <span>
-          {' '}
-          <SearchInput />
-        </span>
+        <SearchInput2 />
       </ListLeft>
     );
   }

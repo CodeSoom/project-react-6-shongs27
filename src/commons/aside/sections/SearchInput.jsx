@@ -20,7 +20,7 @@ export default function SearchInput({
   }
 
   return (
-    <>
+    <div>
       <input
         type="text"
         placeholder="찾을 내용을 입력하세요"
@@ -31,6 +31,6 @@ export default function SearchInput({
       <Link to="/search">
         <FontAwesomeIcon icon={faSearch} onClick={handleSubmit} />
       </Link>
-    </>
+    </div>
   );
 }
