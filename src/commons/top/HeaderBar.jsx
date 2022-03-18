@@ -13,10 +13,42 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 
 import SearchInput from '../aside/sections/SearchInput';
+import { keyframes } from '@emotion/react';
 
-const SearchInput2 = styled(SearchInput)({
-  color: 'red',
-  backgroundColor: 'red',
+import { changeSearchField, getSearchField } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+
+const slideIn = keyframes`
+  from { 
+    opacity: 0;
+    marginLeft: 1000;
+  }
+
+  to {
+    opacity: 1;
+    marginRight: 0;
+  }
+`;
+
+const SearchInputTop = styled(SearchInput)({
+  margin: '0 auto',
+  animation: `${slideIn} 1s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+
+  fontSize: '20px',
+
+  '& input': {
+    height: '1.8rem',
+    marginTop: '.1rem',
+  },
+
+  '& a': {
+    marginLeft: '10px',
+    verticalAlign: 'middle',
+    color: 'white',
+    '&:active': {
+      color: 'black',
+    },
+  },
 });
 
 const ListLeft = styled.ul({
@@ -71,14 +103,28 @@ const ListRight = styled.ul({
 export default function HeaderBar() {
   const [searchSelected, setSearchSelected] = useState(false);
 
+  const dispatch = useDispatch();
+  const searchField = useSelector((state) => state.search.searchField);
+
   function handleClick() {
     setSearchSelected((prev) => !prev);
+  }
+
+  function handleChange(searchField) {
+    dispatch(changeSearchField(searchField));
+  }
+  function handleSubmit() {
+    dispatch(getSearchField());
   }
 
   if (searchSelected) {
     return (
       <ListLeft>
-        <SearchInput2 />
+        <SearchInputTop
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          searchField={searchField}
+        />
       </ListLeft>
     );
   }

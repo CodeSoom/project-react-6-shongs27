@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export default function SearchInput({
+  className,
   handleChange,
   handleSubmit,
   searchField,
@@ -20,7 +21,7 @@ export default function SearchInput({
   }
 
   return (
-    <div>
+    <div className={className}>
       <input
         type="text"
         placeholder="찾을 내용을 입력하세요"
@@ -28,7 +29,7 @@ export default function SearchInput({
         onKeyDown={onDown}
         value={searchField}
       />
-      <Link to="/search">
+      <Link to="/search" className>
         <FontAwesomeIcon icon={faSearch} onClick={handleSubmit} />
       </Link>
     </div>

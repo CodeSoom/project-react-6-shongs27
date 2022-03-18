@@ -12,9 +12,11 @@ const Container = styled.div({
 
 const Search = styled.div({
   marginBottom: '57px',
-
   '& a': {
-    padding: '5px',
+    marginLeft: '5px',
+    '&:active': {
+      color: 'black',
+    },
   },
 });
 
