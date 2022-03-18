@@ -20,7 +20,6 @@ export async function fetchRecentPosts() {
     return posts;
   }
 }
-
 export async function fetchPopularPosts() {
   const response = await fetch(`${process.env.backAPI}/posts/popularPosts`);
   const { trial, posts } = await response.json();
@@ -73,10 +72,7 @@ export async function postArticle(form) {
 }
 
 export async function fetchGoogleAnalytics() {
-  const result = await fetch(
-    'https://www.googleapis.com/analytics/v3/data/ga?access_token=ya29.A0ARrdaM-iisRGNNqChaQPeBCx1wBo8ARSZFK1chFyLQHG9oojRkM_ze3qYZioemtRl80not5wXLZfA7gvSKxgmDJbjww5gkZYcKZKZab7a3_y3Tp7RJXA7nSIGq2-AjSGlN7pA_GXR2haZ4hW7UvsEDgbESmbSQ&ids=ga%3A262553607&dimensions=ga%3Adate&metrics=ga%3A1dayUsers&sort=-ga%3Adate&start-date=30daysAgo&end-date=today'
-  );
-
+  const result = await fetch(`${process.env.backAPI}/ga`);
   const data = await result.json();
 
   return data;
