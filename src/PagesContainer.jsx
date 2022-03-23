@@ -18,6 +18,10 @@ import AsideContainer from './commons/aside/AsideContainer';
 
 import { PageContainer, PostContainer } from '@styles/pageStyle';
 
+function Test() {
+  return <div>가자</div>;
+}
+
 export default function PagesContainer() {
   return (
     <>
@@ -42,7 +46,8 @@ export default function PagesContainer() {
               <HomePage />
             </PageContainer>
           }
-        />
+        ></Route>
+
         <Route
           path="/js"
           element={
@@ -76,7 +81,6 @@ export default function PagesContainer() {
             </PageContainer>
           }
         />
-
         <Route
           path="/:category/:id"
           element={
@@ -86,9 +90,15 @@ export default function PagesContainer() {
           }
         />
 
-        <Route path="*" element={<div>Not Found Page</div>} />
+        <Route
+          path="*"
+          element={
+            <PageContainer>
+              <div>Not Found Page</div>
+            </PageContainer>
+          }
+        />
       </Routes>
-
       <AsideContainer />
     </>
   );
