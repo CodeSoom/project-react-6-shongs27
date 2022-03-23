@@ -30,15 +30,17 @@ const slideIn = keyframes`
   }
 `;
 
-const SearchInputTop = styled(SearchInput)({
+const TopSearchInput = styled(SearchInput)({
   margin: '0 auto',
   animation: `${slideIn} 1s cubic-bezier(0.25, 0.1, 0.25, 1)`,
 
   fontSize: '20px',
 
   '& input': {
+    width: '400px',
     height: '1.8rem',
-    marginTop: '.1rem',
+    padding: 0,
+    marginTop: '.2rem',
   },
 
   '& a': {
@@ -120,10 +122,15 @@ export default function HeaderBar() {
   if (searchSelected) {
     return (
       <ListLeft>
-        <SearchInputTop
+        <TopSearchInput
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           searchField={searchField}
+        />
+        <img
+          src="img/circle-xmark-regular.svg"
+          alt="검색나가기"
+          color="white"
         />
       </ListLeft>
     );

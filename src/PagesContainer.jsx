@@ -14,7 +14,7 @@ import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
 import Nav from './commons/top/Nav';
 
-import Footer from './commons/aside/FooterContainer';
+import AsideContainer from './commons/aside/AsideContainer';
 
 import styled from '@emotion/styled';
 
@@ -30,7 +30,7 @@ export default function PagesContainer() {
       <HeaderBar />
       <Title />
       <Nav />
-      <Container>
+      <Container className="sexy">
         <Routes>
           {/* route /일 경우 메인페이지 변경할 것 */}
           <Route path="/" element={<HomePage />} />
@@ -46,7 +46,7 @@ export default function PagesContainer() {
           <Route path="*" element={<div>Not Found Page</div>} />
         </Routes>
       </Container>
-      <Footer />
+      <AsideContainer />
     </>
   );
 }
