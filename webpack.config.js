@@ -28,6 +28,7 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       '@actions': path.resolve(__dirname, 'src/actions'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
       //   '@': path.resolve(__dirname, ''),
       //   '@components': path.resolve(__dirname, 'src/components'),
       //   '@containers': path.resolve(__dirname, 'src/containers'),
@@ -36,7 +37,6 @@ module.exports = {
       //   '@libs': path.resolve(__dirname, 'src/libs'),
       //   '@utils': path.resolve(__dirname, 'src/utils'),
       //   '@plugins': path.resolve(__dirname, 'src/plugins'),
-      //   '@styles': path.resolve(__dirname, 'src/styles'),
     },
   },
   devServer: {

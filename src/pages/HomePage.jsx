@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import PagesPosts from '../components/PagesPosts';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getPagesPosts } from '../actions';
+import { getPagesPosts } from '@actions';
 
 export default function HomePage() {
   const dispatch = useDispatch();

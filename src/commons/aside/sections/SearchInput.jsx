@@ -29,7 +29,7 @@ export default function SearchInput({
         onKeyDown={onDown}
         value={searchField}
       />
-      <Link to="/search" className>
+      <Link to="/search">
         <FontAwesomeIcon icon={faSearch} onClick={handleSubmit} />
       </Link>
     </div>

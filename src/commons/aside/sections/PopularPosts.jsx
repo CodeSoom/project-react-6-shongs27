@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
-import { List, Item } from '../../../styles/pageStyle';
+import { List, Item } from '@styles/pageStyle';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';

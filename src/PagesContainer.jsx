@@ -16,13 +16,7 @@ import Nav from './commons/top/Nav';
 
 import AsideContainer from './commons/aside/AsideContainer';
 
-import styled from '@emotion/styled';
-
-const Container = styled.div({
-  margin: '2em auto',
-  width: '50%',
-  minHeight: '70vh',
-});
+import { PageContainer, PostContainer } from '@styles/pageStyle';
 
 export default function PagesContainer() {
   return (
@@ -30,22 +24,71 @@ export default function PagesContainer() {
       <HeaderBar />
       <Title />
       <Nav />
-      <Container className="sexy">
-        <Routes>
-          {/* route /일 경우 메인페이지 변경할 것 */}
-          <Route path="/" element={<HomePage />} />
+      <Routes>
+        {/* route /일 경우 메인페이지 변경할 것 */}
+        <Route
+          path="/"
+          element={
+            <PageContainer>
+              <HomePage />
+            </PageContainer>
+          }
+        />
 
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/js" element={<JsPage />} />
-          <Route path="/react" element={<ReactPage />} />
+        <Route
+          path="/home"
+          element={
+            <PageContainer>
+              <HomePage />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/js"
+          element={
+            <PageContainer>
+              <JsPage />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/react"
+          element={
+            <PageContainer>
+              <ReactPage />
+            </PageContainer>
+          }
+        />
 
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/:category/:id" element={<PostDetailContainer />} />
+        <Route
+          path="/search"
+          element={
+            <PageContainer>
+              <SearchPage />
+            </PageContainer>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PageContainer>
+              <LoginPage />
+            </PageContainer>
+          }
+        />
 
-          <Route path="*" element={<div>Not Found Page</div>} />
-        </Routes>
-      </Container>
+        <Route
+          path="/:category/:id"
+          element={
+            <PostContainer>
+              <PostDetailContainer />
+            </PostContainer>
+          }
+        />
+
+        <Route path="*" element={<div>Not Found Page</div>} />
+      </Routes>
+
       <AsideContainer />
     </>
   );
