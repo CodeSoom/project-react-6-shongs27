@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import JsPage from './pages/JsPage';
 import ReactPage from './pages/ReactPage';
-// import ComputerPage from './pages/ComputerPage';
+import ComputerPage from './pages/ComputerPage';
 // import AlgorithmPage from './pages/AlgorithmPage';
 // import SomethingPage from './pages/SomethingPage';
 import PostDetailContainer from './components/PostDetailContainer';
@@ -17,10 +17,6 @@ import Nav from './commons/top/Nav';
 import AsideContainer from './commons/aside/AsideContainer';
 
 import { PageContainer, PostContainer } from '@styles/pageStyle';
-
-function Test() {
-  return <div>가자</div>;
-}
 
 export default function PagesContainer() {
   return (
@@ -56,11 +52,21 @@ export default function PagesContainer() {
             </PageContainer>
           }
         />
+
         <Route
           path="/react"
           element={
             <PageContainer>
               <ReactPage />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/computer"
+          element={
+            <PageContainer>
+              <ComputerPage />
             </PageContainer>
           }
         />

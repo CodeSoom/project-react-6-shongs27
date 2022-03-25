@@ -29,6 +29,7 @@ module.exports = {
     alias: {
       '@actions': path.resolve(__dirname, 'src/actions'),
       '@styles': path.resolve(__dirname, 'src/styles'),
+      '@fixture': path.resolve(__dirname, 'fixture'),
       //   '@': path.resolve(__dirname, ''),
       //   '@components': path.resolve(__dirname, 'src/components'),
       //   '@containers': path.resolve(__dirname, 'src/containers'),
