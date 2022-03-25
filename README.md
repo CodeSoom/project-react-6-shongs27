@@ -9,7 +9,6 @@ main 브랜치에 통합
 
 [PR11] 스타일 조정
 
-- 실제서비스에서도 id치면 나오는가?
 - headerBar x버튼 구현 (image 뭘로 )
 
 [PR12]

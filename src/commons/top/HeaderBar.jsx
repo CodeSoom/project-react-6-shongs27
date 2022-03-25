@@ -5,6 +5,7 @@ import {
   faFile,
   faGamepad,
   faSearch,
+  faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Link } from 'react-router-dom';
@@ -30,31 +31,50 @@ const slideIn = keyframes`
   }
 `;
 
-const TopSearchInput = styled(SearchInput)({
-  margin: '0 auto',
+const BarSearch = styled(SearchInput)({
   animation: `${slideIn} 1s cubic-bezier(0.25, 0.1, 0.25, 1)`,
-
-  fontSize: '20px',
 
   '& input': {
     width: '400px',
     height: '1.8rem',
+
     padding: 0,
     marginTop: '.2rem',
+
+    outline: 'none',
   },
 
   '& a': {
     marginLeft: '10px',
-    verticalAlign: 'middle',
-    color: 'white',
-    '&:active': {
-      color: 'black',
-    },
+    color: 'inherit',
+    // verticalAlign: 'middle',
   },
 });
 
-const ListLeft = styled.ul({
+const Bar = styled.div({
   display: 'flex',
+  justifyContent: 'center',
+  height: '2.4rem',
+  backgroundColor: 'black',
+  color: 'gray',
+
+  //돋보기 크기
+  fontSize: '20px',
+
+  '& span': {
+    marginLeft: '10px',
+    lineHeight: '2.4rem',
+
+    animation: `${slideIn} 1s cubic-bezier(0.25, 0.1, 0.25, 1)`,
+
+    //x마크 크기
+    fontSize: '30px',
+  },
+});
+
+const BarLeft = styled.ul({
+  display: 'flex',
+
   height: '2.4rem',
   backgroundColor: 'black',
   color: 'gray',
@@ -73,7 +93,7 @@ const ListLeft = styled.ul({
   },
 });
 
-const ListRight = styled.ul({
+const BarRight = styled.ul({
   display: 'flex',
   height: '2.4em',
   backgroundColor: 'black',
@@ -111,7 +131,6 @@ export default function HeaderBar() {
   function handleClick() {
     setSearchSelected((prev) => !prev);
   }
-
   function handleChange(searchField) {
     dispatch(changeSearchField(searchField));
   }
@@ -121,24 +140,22 @@ export default function HeaderBar() {
 
   if (searchSelected) {
     return (
-      <ListLeft>
-        <TopSearchInput
+      <Bar>
+        <BarSearch
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           searchField={searchField}
         />
-        <img
-          src="img/circle-xmark-regular.svg"
-          alt="검색나가기"
-          color="white"
-        />
-      </ListLeft>
+        <span>
+          <FontAwesomeIcon icon={faXmark} onClick={handleClick} />
+        </span>
+      </Bar>
     );
   }
 
   return (
     <>
-      <ListLeft>
+      <BarLeft>
         <li>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} size="lg" />
@@ -159,9 +176,9 @@ export default function HeaderBar() {
           <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
           <span>방명록</span>
         </li>
-      </ListLeft>
+      </BarLeft>
 
-      <ListRight>
+      <BarRight>
         <span>
           <Link to="/login"> Hong WonBae </Link>
         </span>
@@ -171,7 +188,7 @@ export default function HeaderBar() {
         <span>
           <FontAwesomeIcon icon={faSearch} size="lg" onClick={handleClick} />
         </span>
-      </ListRight>
+      </BarRight>
     </>
   );
 }

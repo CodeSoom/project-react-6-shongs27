@@ -63,7 +63,7 @@ export default function AsideSectionsContainer() {
           dailyActiveUsers={dailyActiveUsers}
         />
       </SectionsContainer>
-      <FooterBar popularPosts={popularPosts} />
+      <FooterBar />
     </Container>
   );
 }

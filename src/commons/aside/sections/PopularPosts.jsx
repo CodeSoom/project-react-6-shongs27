@@ -10,7 +10,8 @@ const Container = styled.div({
   float: 'left',
   width: '33.3%',
   minHeight: '300px',
-  padding: '0 12px',
+  paddingLeft: '12px',
+  paddingRight: '12px',
   boxSizing: 'border-box',
 });
 
