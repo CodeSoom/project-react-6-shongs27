@@ -7,10 +7,6 @@ require('dotenv').config();
 module.exports = {
   mode: process.env.mode,
   // entry: path.resolve(__dirname, 'src/index.jsx'),
-  // output: {
-  //  path: path.resolve(__dirname, 'dist'),
-  //  publicPath: '/',
-  // },
   module: {
     rules: [
       {
@@ -42,10 +38,16 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    static: {
-      directory: path.join(__dirname, 'public/img'),
-      publicPath: '/img',
-    },
+    static: [
+      {
+        directory: path.join(__dirname, 'public/img'),
+        publicPath: '/img',
+      },
+      {
+        directory: path.join(__dirname, 'public/mortyGame'),
+        publicPath: '/mortyGame',
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({

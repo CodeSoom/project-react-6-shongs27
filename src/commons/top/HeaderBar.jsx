@@ -87,6 +87,11 @@ const BarLeft = styled.ul({
     fontWeight: 'bold',
     margin: '.4em 1em 0 0',
 
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
+
     '& span': {
       marginLeft: '.5em',
     },
@@ -168,8 +173,10 @@ export default function HeaderBar() {
         </li>
 
         <li>
-          <FontAwesomeIcon icon={faGamepad} size="lg" />
-          <span>게임</span>
+          <a href="mortyGame/index.html" target="_blank">
+            <FontAwesomeIcon icon={faGamepad} size="lg" />
+            <span>게임</span>
+          </a>
         </li>
 
         <li>

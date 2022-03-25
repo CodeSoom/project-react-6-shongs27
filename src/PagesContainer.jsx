@@ -79,6 +79,9 @@ export default function PagesContainer() {
             </PageContainer>
           }
         />
+
+        <Route path="/game" element={<div>너만 왜 못ㅂ봐</div>} />
+
         <Route
           path="/login"
           element={
