@@ -47,7 +47,6 @@ const BarSearch = styled(SearchInput)({
   '& a': {
     marginLeft: '10px',
     color: 'inherit',
-    // verticalAlign: 'middle',
   },
 });
 
