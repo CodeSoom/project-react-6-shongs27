@@ -11,14 +11,14 @@ const Likes = styled.div({
   },
 });
 
-export default function PostDetail({ postDetail }) {
+export default function PostDetail({ postDetail, handleClick }) {
   const { _id, writer, title, description, category, content, likes } =
     postDetail;
 
   return (
     <>
       <MarkdownRender markdown={content} />
-      <Likes>
+      <Likes onClick={handleClick}>
         <FontAwesomeIcon icon={faHeart} size="lg" />
         <span>{likes}</span>
       </Likes>

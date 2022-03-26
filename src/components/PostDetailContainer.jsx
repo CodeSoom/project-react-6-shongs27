@@ -1,12 +1,10 @@
+import PostDetail from './PostDetail';
+
 import { useEffect } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useParams } from 'react-router-dom';
 
-import { getPostDetail } from '../actions';
-
-import PostDetail from './PostDetail';
+import { getPostDetail, upLike } from '@actions';
 
 export default function PostDetailContainer() {
   const dispatch = useDispatch();
@@ -17,5 +15,9 @@ export default function PostDetailContainer() {
     dispatch(getPostDetail(params));
   }, [params]);
 
-  return <PostDetail postDetail={postDetail} />;
+  function handleClick() {
+    dispatch(upLike());
+  }
+
+  return <PostDetail postDetail={postDetail} onClick={handleClick} />;
 }

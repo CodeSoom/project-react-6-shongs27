@@ -199,3 +199,12 @@ export function setGoogleAnalytics(activeUsers) {
     payload: { activeUsers },
   };
 }
+
+export function upLike() {
+  return async (dispatch, getState) => {
+    const { trial } = await postLike();
+
+    if (trial) {
+    }
+  };
+}
