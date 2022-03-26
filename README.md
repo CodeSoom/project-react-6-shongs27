@@ -11,6 +11,14 @@ main 브랜치에 통합
 
 - [ ] 좋아요 기능 구현
 
+1. 골렘전사 씹
+   Ip 들어오는걸 기억 ㅡ 뭐 물어보지는 않는지
+   통신사 아이피 안돼
+
+2. Body 최소크기 확보
+3. 글 누르면 선두로 이동
+   https://keep.google.com/#NOTE/1Q8agFbo8LufqOWCsJ3Vqjl76jd0U2YU3spwtYO1z6SDst7egKNRcl-6_CHrkOxs
+
 - 자기소개서?
 
 [PR13] 블로그글 다양하게 채우고 Style 꾸미기

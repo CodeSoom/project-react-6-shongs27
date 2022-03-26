@@ -1,19 +1,28 @@
 import styled from '@emotion/styled';
 
 export const PostContainer = styled.div({
+  margin: '2em auto',
+  minHeight: '70vh',
+
+  width: '95%',
+
+  //태블릿과 컴퓨터 화면
   '@media only screen and (min-width: 768px)': {
-    margin: '2em auto',
     width: '933px',
-    minHeight: '70vh',
   },
 });
 
 export const PageContainer = styled.div({
+  margin: '2em auto',
+
+  minHeight: '50vh',
+  width: '90%',
+
   '@media only screen and (min-width: 768px)': {
-    margin: '2em auto',
     paddingLeft: '100px',
-    width: '50%',
+
     minHeight: '70vh',
+    width: '50%',
   },
 });
 
