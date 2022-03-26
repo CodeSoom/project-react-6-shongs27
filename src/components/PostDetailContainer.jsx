@@ -13,6 +13,7 @@ export default function PostDetailContainer() {
 
   useEffect(() => {
     dispatch(getPostDetail(params));
+    window.scrollTo(0, 0);
   }, [params]);
 
   function handleClick() {

@@ -14,10 +14,7 @@ main 브랜치에 통합
 1. 골렘전사 씹
    Ip 들어오는걸 기억 ㅡ 뭐 물어보지는 않는지
    통신사 아이피 안돼
-
-2. Body 최소크기 확보
-3. 글 누르면 선두로 이동
-   https://keep.google.com/#NOTE/1Q8agFbo8LufqOWCsJ3Vqjl76jd0U2YU3spwtYO1z6SDst7egKNRcl-6_CHrkOxs
+2. 글 누르면 선두로 이동
 
 - 자기소개서?
 
