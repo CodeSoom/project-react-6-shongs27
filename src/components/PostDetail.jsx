@@ -11,14 +11,13 @@ const Likes = styled.div({
   },
 });
 
-export default function PostDetail({ postDetail, handleClick }) {
-  const { _id, writer, title, description, category, content, likes } =
-    postDetail;
+export default function PostDetail({ postDetail, likes, handleClick }) {
+  const { _id, writer, title, description, category, content } = postDetail;
 
   return (
     <>
       <MarkdownRender markdown={content} />
-      <Likes onClick={handleClick}>
+      <Likes onClick={() => handleClick(_id)}>
         <FontAwesomeIcon icon={faHeart} size="lg" />
         <span>{likes}</span>
       </Likes>

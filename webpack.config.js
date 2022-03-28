@@ -26,7 +26,7 @@ module.exports = {
       '@actions': path.resolve(__dirname, 'src/actions'),
       '@styles': path.resolve(__dirname, 'src/styles'),
       '@fixture': path.resolve(__dirname, 'fixture'),
-      //   '@': path.resolve(__dirname, ''),
+      '@storage': path.resolve(__dirname, 'src/services.storage'),
       //   '@components': path.resolve(__dirname, 'src/components'),
       //   '@containers': path.resolve(__dirname, 'src/containers'),
       //   '@pages': path.resolve(__dirname, 'src/pages'),

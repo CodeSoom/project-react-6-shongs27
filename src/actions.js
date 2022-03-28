@@ -8,8 +8,9 @@ import {
   postArticle,
   postLogin,
   fetchGoogleAnalytics,
+  postLike,
 } from './services/api';
-import { setItem, removeItem } from './services/storage';
+import { setItem, removeItem, isItem } from './services/storage';
 
 export function setPagesPosts(category, pagePosts) {
   return {
@@ -200,11 +201,20 @@ export function setGoogleAnalytics(activeUsers) {
   };
 }
 
-export function upLike() {
-  return async (dispatch, getState) => {
-    const { trial } = await postLike();
+export function upLike(postId) {
+  return async (dispatch) => {
+    const { trial, post } = await postLike(postId);
 
     if (trial) {
+      dispatch(setPostDetail(post));
+
+      if (!isItem('likePostIDs', postId)) {
+        return setItem('likePostIDs', JSON.stringify([...likePostIDs, postId]));
+      }
+
+      return setItem('likePostIDs', JSON.stringify([postId]));
     }
+
+    return message.info('모종의 이유로 좋아요가 눌러지지 않았어요');
   };
 }

@@ -4,6 +4,7 @@ const initialState = {
     yesterDayActiveUser: '',
     oneMonthActiveUser: '',
   },
+  post: '',
   posts: {
     home: [],
     js: [],
@@ -25,7 +26,6 @@ const initialState = {
     accessToken: '',
   },
   page: { title: '', description: '' },
-  post: '',
   clicked: false,
 };
 

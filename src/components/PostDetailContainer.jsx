@@ -6,19 +6,34 @@ import { useParams } from 'react-router-dom';
 
 import { getPostDetail, upLike } from '@actions';
 
+import { isItem } from '../services/storage';
+
 export default function PostDetailContainer() {
   const dispatch = useDispatch();
   const params = useParams();
-  const postDetail = useSelector((state) => state.post);
+  const { postDetail, likes } = useSelector((state) => ({
+    postDetail: state.post,
+    likes: state.post.likes,
+  }));
 
   useEffect(() => {
     dispatch(getPostDetail(params));
     window.scrollTo(0, 0);
   }, [params]);
 
-  function handleClick() {
-    dispatch(upLike());
+  function handleClick(postId) {
+    if (isItem('likePostIDs', postId)) {
+      return;
+      // return dispatch(unLike(postId));
+    }
+    return dispatch(upLike(postId));
   }
 
-  return <PostDetail postDetail={postDetail} onClick={handleClick} />;
+  return (
+    <PostDetail
+      postDetail={postDetail}
+      likes={likes}
+      handleClick={handleClick}
+    />
+  );
 }
