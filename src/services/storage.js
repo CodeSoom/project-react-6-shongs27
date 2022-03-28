@@ -11,14 +11,15 @@ export function removeItem(key) {
 }
 
 export function isItem(key, value) {
-  const values = JSON.parse(getItem(key));
+  const item = JSON.parse(getItem(key));
 
-  if (values) {
-    const isRegistered = values.some((v) => v === value);
+  if (item) {
+    const isArrayValue = item.some((v) => v === value);
 
-    if (isRegistered) {
+    if (isArrayValue) {
       return true;
     }
     return false;
   }
+  return false;
 }

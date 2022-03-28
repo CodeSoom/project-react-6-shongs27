@@ -8,9 +8,9 @@ import {
   postArticle,
   postLogin,
   fetchGoogleAnalytics,
-  postLike,
+  patchLike,
 } from './services/api';
-import { setItem, removeItem, isItem } from './services/storage';
+import { setItem, removeItem, getItem, isItem } from './services/storage';
 
 export function setPagesPosts(category, pagePosts) {
   return {
@@ -203,16 +203,20 @@ export function setGoogleAnalytics(activeUsers) {
 
 export function upLike(postId) {
   return async (dispatch) => {
-    const { trial, post } = await postLike(postId);
+    const { trial, post } = await patchLike(postId);
 
     if (trial) {
       dispatch(setPostDetail(post));
 
-      if (!isItem('likePostIDs', postId)) {
-        return setItem('likePostIDs', JSON.stringify([...likePostIDs, postId]));
+      const item = JSON.parse(getItem('likePostIDs'));
+      if (item) {
+        return (
+          !isItem('likePostIDs', postId) &&
+          setItem('likePostIDs', JSON.stringify([...item, postId]))
+        );
       }
 
-      return setItem('likePostIDs', JSON.stringify([postId]));
+      setItem('likePostIDs', JSON.stringify([postId]));
     }
 
     return message.info('모종의 이유로 좋아요가 눌러지지 않았어요');

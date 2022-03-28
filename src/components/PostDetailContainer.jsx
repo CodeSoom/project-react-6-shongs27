@@ -24,7 +24,6 @@ export default function PostDetailContainer() {
   function handleClick(postId) {
     if (isItem('likePostIDs', postId)) {
       return;
-      // return dispatch(unLike(postId));
     }
     return dispatch(upLike(postId));
   }

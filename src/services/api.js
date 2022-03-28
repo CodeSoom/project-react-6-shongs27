@@ -78,9 +78,9 @@ export async function fetchGoogleAnalytics() {
   return data;
 }
 
-export async function postLike(postId) {
+export async function patchLike(postId) {
   const result = await fetch(`${process.env.backAPI}/like/upLike`, {
-    method: 'POST',
+    method: 'PATCH',
     body: postId,
   });
   const data = await result.json();
