@@ -238,7 +238,7 @@ export function unLike(postId) {
       (value) => value !== postId
     );
     filtered.length
-      ? setItem('likePostIDs', filtered)
+      ? setItem('likePostIDs', JSON.stringify([...filtered]))
       : removeItem('likePostIDs');
   };
 }
