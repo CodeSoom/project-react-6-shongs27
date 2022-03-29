@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getPostDetail, upLike } from '@actions';
+import { getPostDetail, upLike, unLike } from '@actions';
 
 import { isItem } from '../services/storage';
 
@@ -23,8 +23,9 @@ export default function PostDetailContainer() {
 
   function handleClick(postId) {
     if (isItem('likePostIDs', postId)) {
-      return;
+      return dispatch(unLike(postId));
     }
+
     return dispatch(upLike(postId));
   }
 

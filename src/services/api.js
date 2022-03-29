@@ -86,3 +86,12 @@ export async function patchLike(postId) {
   const data = await result.json();
   return data;
 }
+
+export async function patchUnlike(postId) {
+  const result = await fetch(`${process.env.backAPI}/like/unLike`, {
+    method: 'PATCH',
+    body: postId,
+  });
+  const data = await result.json();
+  return data;
+}

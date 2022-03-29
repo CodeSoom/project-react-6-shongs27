@@ -9,6 +9,7 @@ import {
   postLogin,
   fetchGoogleAnalytics,
   patchLike,
+  patchUnlike,
 } from './services/api';
 import { setItem, removeItem, getItem, isItem } from './services/storage';
 
@@ -219,6 +220,23 @@ export function upLike(postId) {
       setItem('likePostIDs', JSON.stringify([postId]));
     }
 
-    return message.info('모종의 이유로 좋아요가 눌러지지 않았어요');
+    return message.info('모종의 이유로 좋아요가 작동하지 않아요');
+  };
+}
+
+export function unLike(postId) {
+  return async (dispatch) => {
+    const { trial, post } = await patchUnlike(postId);
+
+    if (trial) {
+      dispatch(setPostDetail(post));
+
+      const filtered = JSON.parse(getItem('likePostIDs')).filter(
+        (value) => value !== postId
+      );
+      filtered.length ? setItem('likePostIDs', filtered) : removeItem('likePostIDs')
+    }
+
+    return message.info('모종의 이유로 좋아요 취소가 작동하지 않아요');
   };
 }

@@ -19,7 +19,9 @@ export function isItem(key, value) {
     if (isArrayValue) {
       return true;
     }
+
     return false;
   }
+
   return false;
 }
