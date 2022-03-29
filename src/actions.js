@@ -214,13 +214,15 @@ export function upLike(postId) {
 
     const item = JSON.parse(getItem('likePostIDs'));
     if (item) {
-      return (
-        !isItem('likePostIDs', postId) &&
-        setItem('likePostIDs', JSON.stringify([...item, postId]))
-      );
+      if (!isItem('likePostIDs', postId)) {
+        setItem('likePostIDs', JSON.stringify([...item, postId]));
+        dispatch(setLikePost([...item, postId]));
+        return;
+      }
     }
 
     setItem('likePostIDs', JSON.stringify([postId]));
+    dispatch(setLikePost([postId]));
   };
 }
 
@@ -237,8 +239,19 @@ export function unLike(postId) {
     const filtered = JSON.parse(getItem('likePostIDs')).filter(
       (value) => value !== postId
     );
-    filtered.length
-      ? setItem('likePostIDs', JSON.stringify([...filtered]))
-      : removeItem('likePostIDs');
+    if (filtered.length) {
+      setItem('likePostIDs', JSON.stringify([...filtered]));
+      dispatch(setLikePost([...filtered]));
+    } else {
+      removeItem('likePostIDs');
+      dispatch(setLikePost());
+    }
+  };
+}
+
+export function setLikePost(likePost = []) {
+  return {
+    type: 'setLikePost',
+    payload: { likePost },
   };
 }

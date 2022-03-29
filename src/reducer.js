@@ -5,6 +5,7 @@ const initialState = {
     oneMonthActiveUser: '',
   },
   post: '',
+  likePost: [],
   posts: {
     home: [],
     js: [],
@@ -137,6 +138,13 @@ const reducer = {
     return {
       ...state,
       GA: activeUsers,
+    };
+  },
+
+  setLikePost(state, { payload: { likePost } }) {
+    return {
+      ...state,
+      likePost,
     };
   },
 };

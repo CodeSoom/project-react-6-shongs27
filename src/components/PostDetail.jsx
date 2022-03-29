@@ -1,24 +1,38 @@
 import MarkdownRender from './MarkdownRender';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faHeartCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 import styled from '@emotion/styled';
 
-const Likes = styled.div({
+const Likes = styled.button({
+  backgroundColor: 'white',
+  fontSize: '1.4em',
+  border: 'none',
+
   '& span': {
     marginLeft: '5px',
   },
 });
 
-export default function PostDetail({ postDetail, likes, handleClick }) {
+export default function PostDetail({
+  postDetail,
+  likes,
+  likePost = [],
+  handleClick,
+}) {
   const { _id, writer, title, description, category, content } = postDetail;
 
+  const LikePostBoolean = likePost.some((post) => post === _id);
   return (
     <>
       <MarkdownRender markdown={content} />
       <Likes onClick={() => handleClick(_id)}>
-        <FontAwesomeIcon icon={faHeart} size="lg" />
+        {LikePostBoolean ? (
+          <FontAwesomeIcon icon={faHeartCircleCheck} />
+        ) : (
+          <FontAwesomeIcon icon={faHeart} />
+        )}
         <span>{likes}</span>
       </Likes>
     </>
