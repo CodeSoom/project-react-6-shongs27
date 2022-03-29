@@ -206,21 +206,21 @@ export function upLike(postId) {
   return async (dispatch) => {
     const { trial, post } = await patchLike(postId);
 
-    if (trial) {
-      dispatch(setPostDetail(post));
-
-      const item = JSON.parse(getItem('likePostIDs'));
-      if (item) {
-        return (
-          !isItem('likePostIDs', postId) &&
-          setItem('likePostIDs', JSON.stringify([...item, postId]))
-        );
-      }
-
-      setItem('likePostIDs', JSON.stringify([postId]));
+    if (!trial) {
+      return message.info('모종의 이유로 좋아요가 작동하지 않아요');
     }
 
-    return message.info('모종의 이유로 좋아요가 작동하지 않아요');
+    dispatch(setPostDetail(post));
+
+    const item = JSON.parse(getItem('likePostIDs'));
+    if (item) {
+      return (
+        !isItem('likePostIDs', postId) &&
+        setItem('likePostIDs', JSON.stringify([...item, postId]))
+      );
+    }
+
+    setItem('likePostIDs', JSON.stringify([postId]));
   };
 }
 
@@ -228,15 +228,17 @@ export function unLike(postId) {
   return async (dispatch) => {
     const { trial, post } = await patchUnlike(postId);
 
-    if (trial) {
-      dispatch(setPostDetail(post));
-
-      const filtered = JSON.parse(getItem('likePostIDs')).filter(
-        (value) => value !== postId
-      );
-      filtered.length ? setItem('likePostIDs', filtered) : removeItem('likePostIDs')
+    if (!trial) {
+      return message.info('모종의 이유로 좋아요 취소가 작동하지 않아요');
     }
 
-    return message.info('모종의 이유로 좋아요 취소가 작동하지 않아요');
+    dispatch(setPostDetail(post));
+
+    const filtered = JSON.parse(getItem('likePostIDs')).filter(
+      (value) => value !== postId
+    );
+    filtered.length
+      ? setItem('likePostIDs', filtered)
+      : removeItem('likePostIDs');
   };
 }
