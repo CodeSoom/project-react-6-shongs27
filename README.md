@@ -1,21 +1,27 @@
 # 블로그 프로젝트
 
-[위키 테스트](https://github.com/CodeSoom/project-react-6-shongs27.wiki.git)
-
-master 브랜치에 작업
-main 브랜치에 통합
+## [위키 테스트](https://github.com/CodeSoom/project-react-6-shongs27.wiki.git)
 
 ---
 
-[PR12] 게임 및 좋아요 기능 구현
+# 할 일
 
-- [ ] 자기소개서?
+[PR12] 좋아요 및 기타기능 구현
+
+- [ ] 자기 소개서
+      누르면 누를수 있는 툴팁이 나오게
+- [ ] 방명록
 
 [PR13] 블로그글 채우고 Style 꾸미기
 
+- [ ] Head에 색깔 다르게 넣기
 - [ ] 블로그 글 리얼로 채우고 이쁘게 꾸미기
 
 [PR14] 테스트 확인
+
+- [ ] 테스트 코드 작성
+
+---
 
 # 참조
 

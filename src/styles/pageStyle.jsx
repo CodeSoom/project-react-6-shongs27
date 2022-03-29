@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const LinkPage = styled.a({
+  textDecoration: 'none',
+  color: '#bdc3c7',
+  fontStyle: 'italic',
+});
+
 export const PostContainer = styled.div({
   margin: '2em auto',
   minHeight: '70vh',
@@ -8,7 +14,8 @@ export const PostContainer = styled.div({
 
   //태블릿과 컴퓨터 화면
   '@media only screen and (min-width: 768px)': {
-    width: '933px',
+    //933px
+    width: '60%',
   },
 });
 

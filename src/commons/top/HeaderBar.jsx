@@ -132,7 +132,8 @@ export default function HeaderBar() {
   const dispatch = useDispatch();
   const searchField = useSelector((state) => state.search.searchField);
 
-  function handleClick() {
+  function handleSearch() {
+    window.scrollTo(0, 0);
     setSearchSelected((prev) => !prev);
   }
   function handleChange(searchField) {
@@ -151,7 +152,7 @@ export default function HeaderBar() {
           searchField={searchField}
         />
         <span>
-          <FontAwesomeIcon icon={faXmark} onClick={handleClick} />
+          <FontAwesomeIcon icon={faXmark} onClick={handleSearch} />
         </span>
       </Bar>
     );
@@ -160,15 +161,17 @@ export default function HeaderBar() {
   return (
     <>
       <BarLeft>
-        <li>
+        <li style={{ margin: '.4em 3em 0 1em' }}>
           <Link to="/">
             <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
         </li>
 
         <li>
-          <FontAwesomeIcon icon={faFile} size="lg" />
-          <span>소개</span>
+          <Link to="/me">
+            <FontAwesomeIcon icon={faFile} size="lg" />
+            <span>소개</span>
+          </Link>
         </li>
 
         <li>
@@ -192,7 +195,7 @@ export default function HeaderBar() {
         <img src="img/hongs.jpg" alt="홍원배" width="35" height="35" />
 
         <span>
-          <FontAwesomeIcon icon={faSearch} size="lg" onClick={handleClick} />
+          <FontAwesomeIcon icon={faSearch} size="lg" onClick={handleSearch} />
         </span>
       </BarRight>
     </>

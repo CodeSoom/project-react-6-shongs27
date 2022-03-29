@@ -17,6 +17,7 @@ import Nav from './commons/top/Nav';
 import AsideContainer from './commons/aside/AsideContainer';
 
 import { PageContainer, PostContainer } from '@styles/pageStyle';
+import Resume from './pages/Resume';
 
 export default function PagesContainer() {
   return (
@@ -80,7 +81,14 @@ export default function PagesContainer() {
           }
         />
 
-        <Route path="/game" element={<div>너만 왜 못ㅂ봐</div>} />
+        <Route
+          path="/me"
+          element={
+            <PostContainer>
+              <Resume />
+            </PostContainer>
+          }
+        />
 
         <Route
           path="/login"
