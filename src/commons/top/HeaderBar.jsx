@@ -182,8 +182,10 @@ export default function HeaderBar() {
         </li>
 
         <li>
-          <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
-          <span>방명록</span>
+          <Link to="/board">
+            <FontAwesomeIcon icon={faChalkboardTeacher} size="lg" />
+            <span>방명록</span>
+          </Link>
         </li>
       </BarLeft>
 

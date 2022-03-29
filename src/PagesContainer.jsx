@@ -4,11 +4,11 @@ import HomePage from './pages/HomePage';
 import JsPage from './pages/JsPage';
 import ReactPage from './pages/ReactPage';
 import ComputerPage from './pages/ComputerPage';
-// import AlgorithmPage from './pages/AlgorithmPage';
-// import SomethingPage from './pages/SomethingPage';
 import PostDetailContainer from './components/PostDetailContainer';
 import SearchPage from './pages/SearchPage';
 import LoginPage from './pages/LoginPage';
+import Resume from './pages/Resume';
+import GuestBoard from './pages/GuestBoard';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
@@ -17,7 +17,6 @@ import Nav from './commons/top/Nav';
 import AsideContainer from './commons/aside/AsideContainer';
 
 import { PageContainer, PostContainer } from '@styles/pageStyle';
-import Resume from './pages/Resume';
 
 export default function PagesContainer() {
   return (
@@ -87,6 +86,15 @@ export default function PagesContainer() {
             <PostContainer>
               <Resume />
             </PostContainer>
+          }
+        />
+
+        <Route
+          path="/board"
+          element={
+            <PageContainer>
+              <GuestBoard />
+            </PageContainer>
           }
         />
 
