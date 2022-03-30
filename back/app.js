@@ -28,6 +28,7 @@ app.use('/login', require('./routes/user'));
 app.use('/posts', require('./routes/post'));
 app.use('/ga', require('./routes/ga'));
 app.use('/like', require('./routes/like'));
+app.use('/board', require('./routes/board'));
 
 // app.use("/uploads", express.static("uploads"));
 
