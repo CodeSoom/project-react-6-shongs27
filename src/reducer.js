@@ -28,6 +28,29 @@ const initialState = {
   },
   page: { title: '', description: '' },
   clicked: false,
+  guestBoard: [
+    {
+      id: '1',
+      title: '이런 못된 놈',
+      writer: 'ㅇㅇ',
+      content: '저기요 이보세요',
+      createdAt: '2020/1/1',
+    },
+    {
+      id: '2',
+      title: '채용하고 싶어요',
+      writer: '배민 리크루터',
+      content: '저기요 이보세요',
+      createdAt: '2020/1/3',
+    },
+    {
+      id: '3',
+      title: '굿',
+      writer: '멉니까',
+      content: '저기요 이보세요',
+      createdAt: '2020/2/3',
+    },
+  ],
 };
 
 const reducer = {
@@ -145,6 +168,13 @@ const reducer = {
     return {
       ...state,
       likePost,
+    };
+  },
+
+  setGuestBoard(state, { payload: { guestBoard } }) {
+    return {
+      ...state,
+      guestBoard,
     };
   },
 };

@@ -10,6 +10,7 @@ import {
   fetchGoogleAnalytics,
   patchLike,
   patchUnlike,
+  fetchGuestBoard,
 } from './services/api';
 import { setItem, removeItem, getItem, isItem } from './services/storage';
 
@@ -253,5 +254,36 @@ export function setLikePost(likePost = []) {
   return {
     type: 'setLikePost',
     payload: { likePost },
+  };
+}
+
+export function getGuestBoard() {
+  return async (dispatch) => {
+    const { trial, board } = await fetchGuestBoard();
+
+    if (!trial) {
+      message.info('서버에서 게시글을 받아올 수 없습니다');
+    }
+
+    dispatch(setGuestBoard(board));
+  };
+}
+
+export function setGuestBoard(guestBoard) {
+  return {
+    type: 'setGuestBoard',
+    payload: { guestBoard },
+  };
+}
+
+export function registerGuestBoard() {
+  return async (dispatch) => {
+    const { trial, board } = await postGuestBoard();
+
+    if (!trial) {
+      return message.info('게시글 등록에 실패했습니다');
+    }
+
+    dispatch(setGuestBoard(board));
   };
 }

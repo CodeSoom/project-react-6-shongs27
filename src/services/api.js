@@ -95,3 +95,9 @@ export async function patchUnlike(postId) {
   const data = await result.json();
   return data;
 }
+
+export async function fetchGuestBoard() {
+  const result = await fetch(`${process.env.backAPI}/board`);
+  const data = await result.json();
+  return data;
+}
