@@ -9,15 +9,15 @@ const BoardSchema = new Schema(
       type: String,
       required: true,
     },
-    content: {
-      type: String,
-      required: true,
-    },
-    writer: {
+    name: {
       type: String,
       required: true,
     },
     password: {
+      type: String,
+      required: true,
+    },
+    content: {
       type: String,
       required: true,
     },

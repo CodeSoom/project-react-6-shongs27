@@ -105,6 +105,9 @@ export async function fetchGuestBoard() {
 export async function postThread(thread) {
   const result = await fetch(`${process.env.backAPI}/board`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify(thread),
   });
   const data = await result.json();

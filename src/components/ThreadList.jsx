@@ -49,13 +49,13 @@ export default function ThreadList({ guestBoard, handleMode }) {
             </tr>
           </thead>
           <tbody>
-            {guestBoard.map(({ id, title, writer, createdAt }) => (
+            {guestBoard.map(({ id, title, name, createdAt }) => (
               <tr key={id}>
                 <TD>{id}</TD>
                 <TD leftAlign={true}>
                   <Link to={`/board/${id}`}>{title}</Link>
                 </TD>
-                <TD>{writer}</TD>
+                <TD>{name}</TD>
                 <TD>{createdAt}</TD>
               </tr>
             ))}

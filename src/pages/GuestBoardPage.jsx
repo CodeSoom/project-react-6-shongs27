@@ -25,12 +25,13 @@ export default function GuestBoardPage() {
     setWritingMode((prev) => !prev);
   }
 
-  function handleSubmit() {
-    dispatch(registerThreadField());
-  }
-
   function handleChange(name, value) {
     dispatch(changeThreadField(name, value));
+  }
+
+  function handleSubmit() {
+    dispatch(registerThreadField());
+    handleMode();
   }
 
   return (
