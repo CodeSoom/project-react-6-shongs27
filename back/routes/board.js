@@ -10,17 +10,18 @@ router.get('/', (req, res) => {
 
 // 게시글 등록
 router.post('/', (req, res) => {
-  const board = new Board(req.body);
+  console.log('board 등록: ', req.body);
+  // const board = new Board(req.body);
 
-  board.save((err) => {
-    if (err) res.status(400).send({ trial: false });
+  // board.save((err) => {
+  //   if (err) res.status(400).send({ trial: false });
 
-    Board.find().exec((err, board) => {
-      if (err) res.status(400).send({ trial: false });
+  //   Board.find().exec((err, board) => {
+  //     if (err) res.status(400).send({ trial: false });
 
-      res.status(200).send({ trial: true, board });
-    });
-  });
+  //     res.status(200).send({ trial: true, board });
+  //   });
+  // });
 });
 
 module.exports = router;

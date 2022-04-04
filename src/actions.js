@@ -11,6 +11,8 @@ import {
   patchLike,
   patchUnlike,
   fetchGuestBoard,
+  postGuestBoard,
+  postThread,
 } from './services/api';
 import { setItem, removeItem, getItem, isItem } from './services/storage';
 
@@ -257,6 +259,17 @@ export function setLikePost(likePost = []) {
   };
 }
 
+//////////////
+// 방명록
+//////////////
+
+export function setGuestBoard(guestBoard) {
+  return {
+    type: 'setGuestBoard',
+    payload: { guestBoard },
+  };
+}
+
 export function getGuestBoard() {
   return async (dispatch) => {
     const { trial, board } = await fetchGuestBoard();
@@ -269,21 +282,23 @@ export function getGuestBoard() {
   };
 }
 
-export function setGuestBoard(guestBoard) {
-  return {
-    type: 'setGuestBoard',
-    payload: { guestBoard },
-  };
-}
-
-export function registerGuestBoard() {
-  return async (dispatch) => {
-    const { trial, board } = await postGuestBoard();
+export function registerThreadField() {
+  return async (dispatch, getState) => {
+    const { threadField } = getState();
+    console.log(threadField);
+    const { trial, board } = await postThread(threadField);
 
     if (!trial) {
       return message.info('게시글 등록에 실패했습니다');
     }
 
     dispatch(setGuestBoard(board));
+  };
+}
+
+export function changeThreadField(name, value) {
+  return {
+    type: 'changeThreadField',
+    payload: { name, value },
   };
 }

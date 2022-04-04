@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 
 const TH = styled.th({
@@ -12,9 +14,14 @@ const TD = styled.td(({ leftAlign = false }) => ({
   verticalAlign: 'middle',
 
   borderTop: '2px solid #eee',
+
+  '& a': {
+    textDecoration: 'none',
+    color: 'inherit',
+  },
 }));
 
-export default function Thread({ guestBoard, handleClick }) {
+export default function ThreadList({ guestBoard, handleMode }) {
   return (
     <>
       <div style={{ marginTop: '4em', padding: '10px', minHeight: '5em' }}>
@@ -45,7 +52,9 @@ export default function Thread({ guestBoard, handleClick }) {
             {guestBoard.map(({ id, title, writer, createdAt }) => (
               <tr key={id}>
                 <TD>{id}</TD>
-                <TD leftAlign={true}>{title}</TD>
+                <TD leftAlign={true}>
+                  <Link to={`/board/${id}`}>{title}</Link>
+                </TD>
                 <TD>{writer}</TD>
                 <TD>{createdAt}</TD>
               </tr>
@@ -57,7 +66,7 @@ export default function Thread({ guestBoard, handleClick }) {
         <button
           style={{ marginRight: '2em' }}
           type="button"
-          onClick={handleClick}
+          onClick={handleMode}
         >
           글쓰기
         </button>

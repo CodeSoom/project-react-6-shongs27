@@ -28,6 +28,12 @@ const initialState = {
   },
   page: { title: '', description: '' },
   clicked: false,
+  threadField: {
+    title: '',
+    name: '',
+    password: '',
+    content: '',
+  },
   guestBoard: [
     {
       id: '1',
@@ -175,6 +181,16 @@ const reducer = {
     return {
       ...state,
       guestBoard,
+    };
+  },
+
+  changeThreadField(state, { payload: { name, value } }) {
+    return {
+      ...state,
+      threadField: {
+        ...state.threadField,
+        [name]: value,
+      },
     };
   },
 };

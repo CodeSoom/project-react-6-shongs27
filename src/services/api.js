@@ -101,3 +101,12 @@ export async function fetchGuestBoard() {
   const data = await result.json();
   return data;
 }
+
+export async function postThread(thread) {
+  const result = await fetch(`${process.env.backAPI}/board`, {
+    method: 'POST',
+    body: JSON.stringify(thread),
+  });
+  const data = await result.json();
+  return data;
+}
