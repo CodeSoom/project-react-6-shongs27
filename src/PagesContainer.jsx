@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import Resume from './pages/Resume';
 import GuestBoardPage from './pages/GuestBoardPage';
 import GuestBoardDetailPage from './pages/GuestBoardDetailPage';
+import GuestBoardModifyPage from './pages/GuestBoardModifyPage';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
@@ -104,6 +105,15 @@ export default function PagesContainer() {
           element={
             <PageContainer>
               <GuestBoardDetailPage />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/board/:id/fix"
+          element={
+            <PageContainer>
+              <GuestBoardModifyPage />
             </PageContainer>
           }
         />

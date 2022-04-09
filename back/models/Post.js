@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema(
+const postSchema = new Schema(
   {
     title: String,
     description: String,
@@ -19,6 +19,7 @@ const PostSchema = new Schema(
   },
   { timestamps: true }
 );
-PostSchema.index({ '$**': 'text' });
 
-module.exports = mongoose.model('Post', PostSchema);
+postSchema.index({ '$**': 'text' });
+
+module.exports = mongoose.model('Post', postSchema);

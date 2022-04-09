@@ -14,17 +14,6 @@ export default function ThreadForm({
   return (
     <>
       <div>
-        <label htmlFor="board-title">제목</label>
-        <input
-          type="text"
-          id="board-title"
-          name="title"
-          onChange={onChange}
-          value={title}
-        />
-      </div>
-
-      <div>
         <label htmlFor="board-name">작성자</label>
         <input
           type="text"
@@ -43,6 +32,17 @@ export default function ThreadForm({
           name="password"
           onChange={onChange}
           value={password}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="board-title">제목</label>
+        <input
+          type="text"
+          id="board-title"
+          name="title"
+          onChange={onChange}
+          value={title}
         />
       </div>
 

@@ -14,8 +14,8 @@ export default function GuestBoardPage() {
   const [FormMode, setWritingMode] = useState(false);
 
   const dispatch = useDispatch();
-  const guestBoard = useSelector((state) => state.guestBoard);
-  const threadField = useSelector((state) => state.threadField);
+  const guestBoard = useSelector((state) => state.guestBoard.board);
+  const threadField = useSelector((state) => state.guestBoard.threadField);
 
   useEffect(() => {
     dispatch(getGuestBoard());

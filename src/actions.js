@@ -11,8 +11,9 @@ import {
   patchLike,
   patchUnlike,
   fetchGuestBoard,
-  postGuestBoard,
   postThread,
+  postThreadLogin,
+  fetchBoardThread,
 } from './services/api';
 import { setItem, removeItem, getItem, isItem } from './services/storage';
 
@@ -275,17 +276,37 @@ export function getGuestBoard() {
     const { trial, board } = await fetchGuestBoard();
 
     if (!trial) {
-      message.info('서버에서 게시글을 받아올 수 없습니다');
+      message.info('서버에서 게시글들을 받아올 수 없습니다');
     }
 
     dispatch(setGuestBoard(board));
   };
 }
 
+export function setBoardThread(thread) {
+  return {
+    type: 'setBoardThread',
+    payload: { thread },
+  };
+}
+
+export function getBoardThread(threadId) {
+  return async (dispatch) => {
+    const { trial, thread } = await fetchBoardThread(threadId);
+
+    if (!trial) {
+      message.info('서버에서 게시글을 받아올 수 없습니다');
+    }
+
+    dispatch(setBoardThread(thread));
+  };
+}
+
 export function registerThreadField() {
   return async (dispatch, getState) => {
-    const { threadField } = getState();
-    console.log(threadField);
+    const {
+      guestBoard: { threadField },
+    } = getState();
     const { trial, board } = await postThread(threadField);
 
     if (!trial) {
@@ -300,5 +321,35 @@ export function changeThreadField(name, value) {
   return {
     type: 'changeThreadField',
     payload: { name, value },
+  };
+}
+
+export function changeThreadLoginField(password) {
+  return {
+    type: 'changeThreadLoginField',
+    payload: { password },
+  };
+}
+
+export function requestThreadLogin(loginState, id) {
+  return async (dispatch, getState) => {
+    const {
+      guestBoard: {
+        loginField: { password },
+      },
+    } = getState();
+
+    const { trial, board } = await postThreadLogin(loginState, id, password);
+
+    if (!trial) {
+      return message.info('게시글 등록에 실패했습니다');
+    }
+
+    if (loginState === 'modify') {
+      //GuestBoardModifyPage로 이동
+    } else if (loginState === 'eliminate') {
+      dispatch(getGuestBoard());
+      message.info('게시글을 성공적으로 삭제했습니다');
+    }
   };
 }

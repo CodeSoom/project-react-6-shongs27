@@ -1,11 +1,47 @@
-import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { Link, useNavigate, useParams } from 'react-router-dom';
+
+import {
+  changeThreadLoginField,
+  getBoardThread,
+  requestThreadLogin,
+} from '../actions';
+
+import { ThreadLogin } from '../components/ThreadLogin';
 
 export default function GuestBoardDetailPage() {
-  const params = useParams();
-  const guestBoard = useSelector((state) => state.guestBoard);
+  const [loginState, setLoginState] = useState(false);
 
-  const { id, title, content } = guestBoard[guestBoard.length - params.id];
+  const dispatch = useDispatch();
+  const password = useSelector((state) => state.guestBoard.loginField.password);
+  const { id, title, content } = useSelector(
+    (state) => state.guestBoard.thread
+  );
+
+  const params = useParams();
+  const navigate = useNavigate();
+
+  function handleChange(password) {
+    dispatch(changeThreadLoginField(password));
+  }
+
+  function handleSubmit() {
+    dispatch(requestThreadLogin(loginState, id));
+
+    if (loginState === 'modify') {
+      navigate(`/board/${id}/fix`);
+    }
+
+    if (loginState === 'eliminate') {
+      navigate('/board');
+    }
+  }
+
+  useEffect(() => {
+    dispatch(getBoardThread(params.id));
+  }, []);
 
   if (!id) {
     return (
@@ -28,10 +64,20 @@ export default function GuestBoardDetailPage() {
         <div style={{ display: 'flex', justifyContent: 'end' }}>
           {true && (
             <>
-              <button style={{ marginRight: '.4em' }} type="button">
+              <button
+                style={{ marginRight: '.4em' }}
+                type="button"
+                name="modify"
+                onClick={() => setLoginState('modify')}
+              >
                 글 수정
               </button>
-              <button style={{ marginRight: '.4em' }} type="button">
+              <button
+                style={{ marginRight: '.4em' }}
+                type="button"
+                name="eliminate"
+                onClick={() => setLoginState('eliminate')}
+              >
                 글 삭제
               </button>
             </>
@@ -41,6 +87,14 @@ export default function GuestBoardDetailPage() {
           </button>
         </div>
       </>
+      {loginState && (
+        <ThreadLogin
+          setLoginState={setLoginState}
+          handleChange={handleChange}
+          value={password}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </>
   );
 }

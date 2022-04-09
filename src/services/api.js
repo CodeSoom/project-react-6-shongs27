@@ -102,6 +102,12 @@ export async function fetchGuestBoard() {
   return data;
 }
 
+export async function fetchBoardThread(threadId) {
+  const result = await fetch(`${process.env.backAPI}/board/${threadId}`);
+  const data = await result.json();
+  return data;
+}
+
 export async function postThread(thread) {
   const result = await fetch(`${process.env.backAPI}/board`, {
     method: 'POST',
@@ -109,6 +115,22 @@ export async function postThread(thread) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(thread),
+  });
+  const data = await result.json();
+  return data;
+}
+
+export async function postThreadLogin(loginState, id, password) {
+  const result = await fetch(`${process.env.backAPI}/board/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      loginState,
+      id,
+      password,
+    }),
   });
   const data = await result.json();
   return data;
