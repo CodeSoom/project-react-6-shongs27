@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 
 import { LinkPage } from '../styles/pageStyle';
+import { useState } from 'react';
+import ResumeMenu from '../components/ResumeMenu';
 
 const Head = styled.h1({
   margin: '2em 1em',
@@ -66,6 +68,8 @@ const Addon = styled.div({
 });
 
 export default function Resume() {
+  const [openMenu, setOpenMenu] = useState(false);
+
   return (
     <>
       <Head>😁발전하는 개발자 홍원배입니다</Head>
@@ -195,8 +199,13 @@ export default function Resume() {
 
       <Addon className="Addon">
         {/* 오른쪽에 위치, 살짝 통통 튀는 애니메이션 */}
-        <button type="button" title="위로 이동, 연락 기능">
+        <button
+          type="button"
+          title="위로 이동, 연락 기능"
+          onClick={() => setOpenMenu((prev) => !prev)}
+        >
           <FontAwesomeIcon icon={faCircleQuestion} size="4x" />
+          {openMenu && <ResumeMenu />}
         </button>
       </Addon>
     </>
