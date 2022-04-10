@@ -1,7 +1,7 @@
 export default function ThreadForm({
   handleSubmit,
   handleChange,
-  handleMode,
+  handleList,
   threadField,
 }) {
   const { title, name, password, content } = threadField;
@@ -62,7 +62,7 @@ export default function ThreadForm({
         <button
           style={{ marginRight: '.4em', backgroundColor: 'gray' }}
           type="button"
-          onClick={handleMode}
+          onClick={handleList}
         >
           취소
         </button>

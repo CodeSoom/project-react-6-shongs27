@@ -14,6 +14,8 @@ import {
   postThread,
   postThreadLogin,
   fetchBoardThread,
+  patchThread,
+  putThread,
 } from './services/api';
 import { setItem, removeItem, getItem, isItem } from './services/storage';
 
@@ -317,10 +319,32 @@ export function registerThreadField() {
   };
 }
 
+export function changeThread() {
+  return async (dispatch, getState) => {
+    const {
+      guestBoard: { threadField },
+    } = getState();
+    const { trial } = await patchThread(threadField);
+
+    if (!trial) {
+      return message.info('게시글 등록에 실패했습니다');
+    }
+
+    dispatch(getGuestBoard());
+  };
+}
+
 export function changeThreadField(name, value) {
   return {
     type: 'changeThreadField',
     payload: { name, value },
+  };
+}
+
+export function setThreadField(thread) {
+  return {
+    type: 'setThreadField',
+    payload: { thread },
   };
 }
 
@@ -339,17 +363,27 @@ export function requestThreadLogin(loginState, id) {
       },
     } = getState();
 
-    const { trial, board } = await postThreadLogin(loginState, id, password);
+    const { trial, thread } = await postThreadLogin(loginState, id, password);
 
     if (!trial) {
       return message.info('게시글 등록에 실패했습니다');
     }
 
+    dispatch(getGuestBoard());
+
     if (loginState === 'modify') {
-      //GuestBoardModifyPage로 이동
+      dispatch(setThreadField(thread));
+      dispatch(changeFormMode('modify'));
+      message.info('게시글을 성공적으로 수정했습니다');
     } else if (loginState === 'eliminate') {
-      dispatch(getGuestBoard());
       message.info('게시글을 성공적으로 삭제했습니다');
     }
+  };
+}
+
+export function changeFormMode(formMode) {
+  return {
+    type: 'changeFormMode',
+    payload: { formMode },
   };
 }

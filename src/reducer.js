@@ -29,6 +29,7 @@ const initialState = {
   page: { title: '', description: '' },
   clicked: false,
   guestBoard: {
+    formMode: false,
     loginField: {
       password: '',
     },
@@ -194,6 +195,16 @@ const reducer = {
     };
   },
 
+  setThreadField(state, { payload: { thread } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        threadField: thread,
+      },
+    };
+  },
+
   changeThreadLoginField(state, { payload: { password } }) {
     return {
       ...state,
@@ -202,6 +213,16 @@ const reducer = {
         loginField: {
           password,
         },
+      },
+    };
+  },
+
+  changeFormMode(state, { payload: { formMode } }) {
+    return {
+      ...state,
+      guestBoard: {
+        ...state.guestBoard,
+        formMode,
       },
     };
   },

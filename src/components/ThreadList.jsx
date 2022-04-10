@@ -21,7 +21,7 @@ const TD = styled.td(({ leftAlign = false }) => ({
   },
 }));
 
-export default function ThreadList({ guestBoard, handleMode }) {
+export default function ThreadList({ guestBoard, handleWriting }) {
   return (
     <>
       <div style={{ marginTop: '4em', padding: '10px', minHeight: '5em' }}>
@@ -66,7 +66,7 @@ export default function ThreadList({ guestBoard, handleMode }) {
         <button
           style={{ marginRight: '2em' }}
           type="button"
-          onClick={handleMode}
+          onClick={handleWriting}
         >
           글쓰기
         </button>

@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+  changeFormMode,
+  changeThread,
   changeThreadField,
   getGuestBoard,
   registerThreadField,
@@ -11,9 +13,9 @@ import ThreadList from '../components/ThreadList';
 import ThreadForm from '../components/ThreadForm';
 
 export default function GuestBoardPage() {
-  const [FormMode, setWritingMode] = useState(false);
-
   const dispatch = useDispatch();
+
+  const formMode = useSelector((state) => state.guestBoard.formMode);
   const guestBoard = useSelector((state) => state.guestBoard.board);
   const threadField = useSelector((state) => state.guestBoard.threadField);
 
@@ -21,8 +23,11 @@ export default function GuestBoardPage() {
     dispatch(getGuestBoard());
   }, []);
 
-  function handleMode() {
-    setWritingMode((prev) => !prev);
+  function handleWriting() {
+    dispatch(changeFormMode('writing'));
+  }
+  function handleList() {
+    dispatch(changeFormMode(false));
   }
 
   function handleChange(name, value) {
@@ -30,8 +35,15 @@ export default function GuestBoardPage() {
   }
 
   function handleSubmit() {
-    dispatch(registerThreadField());
-    handleMode();
+    if (formMode === 'writing') {
+      dispatch(registerThreadField());
+    }
+
+    if (formMode === 'modify') {
+      dispatch(changeThread());
+    }
+
+    handleList();
   }
 
   return (
@@ -44,15 +56,15 @@ export default function GuestBoardPage() {
       >
         방명록
       </h2>
-      {FormMode ? (
+      {formMode ? (
         <ThreadForm
           handleSubmit={handleSubmit}
           handleChange={handleChange}
-          handleMode={handleMode}
+          handleList={handleList}
           threadField={threadField}
         />
       ) : (
-        <ThreadList guestBoard={guestBoard} handleMode={handleMode} />
+        <ThreadList guestBoard={guestBoard} handleWriting={handleWriting} />
       )}
     </>
   );

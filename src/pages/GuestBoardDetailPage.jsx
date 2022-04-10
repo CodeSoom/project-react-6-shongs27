@@ -12,7 +12,7 @@ import {
 import { ThreadLogin } from '../components/ThreadLogin';
 
 export default function GuestBoardDetailPage() {
-  const [loginState, setLoginState] = useState(false);
+  const [loginFor, setLoginFor] = useState(false);
 
   const dispatch = useDispatch();
   const password = useSelector((state) => state.guestBoard.loginField.password);
@@ -23,18 +23,22 @@ export default function GuestBoardDetailPage() {
   const params = useParams();
   const navigate = useNavigate();
 
+  function handleLoginFor() {
+    setLoginFor(false);
+  }
+
   function handleChange(password) {
     dispatch(changeThreadLoginField(password));
   }
 
   function handleSubmit() {
-    dispatch(requestThreadLogin(loginState, id));
+    dispatch(requestThreadLogin(loginFor, id));
 
-    if (loginState === 'modify') {
-      navigate(`/board/${id}/fix`);
+    if (loginFor === 'modify') {
+      navigate(`/board`);
     }
 
-    if (loginState === 'eliminate') {
+    if (loginFor === 'eliminate') {
       navigate('/board');
     }
   }
@@ -68,7 +72,7 @@ export default function GuestBoardDetailPage() {
                 style={{ marginRight: '.4em' }}
                 type="button"
                 name="modify"
-                onClick={() => setLoginState('modify')}
+                onClick={() => setLoginFor('modify')}
               >
                 글 수정
               </button>
@@ -76,7 +80,7 @@ export default function GuestBoardDetailPage() {
                 style={{ marginRight: '.4em' }}
                 type="button"
                 name="eliminate"
-                onClick={() => setLoginState('eliminate')}
+                onClick={() => setLoginFor('eliminate')}
               >
                 글 삭제
               </button>
@@ -87,9 +91,9 @@ export default function GuestBoardDetailPage() {
           </button>
         </div>
       </>
-      {loginState && (
+      {loginFor && (
         <ThreadLogin
-          setLoginState={setLoginState}
+          handleLoginFor={handleLoginFor}
           handleChange={handleChange}
           value={password}
           handleSubmit={handleSubmit}

@@ -3,38 +3,56 @@ const router = express.Router();
 
 const Board = require('../models/Board');
 
+//게시글 수정
+router.patch('/', (req, res) => {
+  const { _id, name, password, title, content } = req.body;
+  Board.findOneAndUpdate(
+    { _id },
+    { $set: { name, password, title, content } },
+    { new: true }
+  ).exec((err) => {
+    if (err) return res.status(400).send({ trial: false });
+
+    res.status(200).send({ trial: true });
+  });
+});
+
 // 게시판 로그인 (수정, 삭제)
 router.post('/login', (req, res) => {
   const { loginState, id, password: clientPassword } = req.body;
 
+  Board.findOne({ id }, (err, thread) => {
+    if (err) return res.status(400).send({ trial: false });
+
+    thread.comparePassword(clientPassword, (err, isMatch) => {
+      if (!isMatch) return res.status(400).send({ trial: false });
+    });
+  });
+
   if (loginState === 'modify') {
+    Board.findOne({ id })
+      .select('title name password content')
+      .exec((err, thread) => {
+        if (err) return res.status(400).send({ tiral: false });
+
+        res.status(200).json({ trial: true, thread });
+      });
   }
 
   if (loginState === 'eliminate') {
-    Board.findOne({ id }, (err, thread) => {
+    Board.findOneAndDelete({ id }).exec((err, board) => {
       if (err) return res.status(400).send({ trial: false });
 
-      thread.comparePassword(clientPassword, (err, isMatch) => {
-        console.log(isMatch);
-        if (!isMatch) return res.status(400).send({ trial: false });
-
-        Board.findOneAndDelete({ id }).exec((err, board) => {
-          if (err) return res.status(400).send({ trial: false });
-
-          return res.status(200).json({ trial: true });
-        });
-      });
+      res.status(200).json({ trial: true });
     });
   }
 });
 
 //게시글 상세내용 가져가기
 router.get('/:id', (req, res) => {
-  console.log(req.params);
   Board.findOne({ id: req.params.id }).exec((err, thread) => {
     if (err) return res.status(400).send({ trial: false });
 
-    console.log(thread);
     return res.status(200).send({ trial: true, thread });
   });
 });
@@ -52,7 +70,13 @@ router.get('/', (req, res) => {
 
 // 게시글 등록
 router.post('/', (req, res) => {
-  const board = new Board(req.body);
+  const { name, password, title, content } = req.body;
+  const board = new Board({
+    name,
+    password,
+    title,
+    content,
+  });
 
   board.save((err) => {
     if (err) return res.status(400).send({ trial: false });

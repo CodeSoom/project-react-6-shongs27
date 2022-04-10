@@ -7,10 +7,10 @@ const Container = styled.div({
 });
 
 export function ThreadLogin({
-  setLoginState,
   handleChange,
   value,
   handleSubmit,
+  handleLoginFor,
 }) {
   function onChange(e) {
     handleChange(e.target.value);
@@ -29,7 +29,7 @@ export function ThreadLogin({
         <button type="button" onClick={handleSubmit}>
           확인
         </button>
-        <button type="button" onClick={() => setLoginState(false)}>
+        <button type="button" onClick={handleLoginFor}>
           취소
         </button>
       </div>

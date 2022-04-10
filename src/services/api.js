@@ -120,6 +120,18 @@ export async function postThread(thread) {
   return data;
 }
 
+export async function patchThread(thread) {
+  const result = await fetch(`${process.env.backAPI}/board`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(thread),
+  });
+  const data = await result.json();
+  return data;
+}
+
 export async function postThreadLogin(loginState, id, password) {
   const result = await fetch(`${process.env.backAPI}/board/login`, {
     method: 'POST',
