@@ -1,19 +1,30 @@
 const express = require('express');
 const router = express.Router();
 
+const bcrypt = require('bcrypt');
+
 const Board = require('../models/Board');
 
 //게시글 수정
 router.patch('/', (req, res) => {
   const { _id, name, password, title, content } = req.body;
-  Board.findOneAndUpdate(
-    { _id },
-    { $set: { name, password, title, content } },
-    { new: true }
-  ).exec((err) => {
-    if (err) return res.status(400).send({ trial: false });
 
-    res.status(200).send({ trial: true });
+  let newPassword;
+  bcrypt.genSalt(10, function (err, salt) {
+    bcrypt.hash(password, salt, function (err, hash) {
+      newPassword = hash;
+
+      Board.findOneAndUpdate(
+        { _id },
+        { $set: { name, password: newPassword, title, content } },
+        { new: true }
+      ).exec((err) => {
+        console.log(newPassword);
+        if (err) return res.status(400).send({ trial: false });
+
+        res.status(200).send({ trial: true });
+      });
+    });
   });
 });
 
@@ -26,26 +37,26 @@ router.post('/login', (req, res) => {
 
     thread.comparePassword(clientPassword, (err, isMatch) => {
       if (!isMatch) return res.status(400).send({ trial: false });
+
+      if (loginState === 'modify') {
+        Board.findOne({ id })
+          .select('title name content')
+          .exec((err, thread) => {
+            if (err) return res.status(400).send({ tiral: false });
+
+            res.status(200).json({ trial: true, thread });
+          });
+      }
+
+      if (loginState === 'eliminate') {
+        Board.findOneAndDelete({ id }).exec((err, board) => {
+          if (err) return res.status(400).send({ trial: false });
+
+          res.status(200).json({ trial: true });
+        });
+      }
     });
   });
-
-  if (loginState === 'modify') {
-    Board.findOne({ id })
-      .select('title name password content')
-      .exec((err, thread) => {
-        if (err) return res.status(400).send({ tiral: false });
-
-        res.status(200).json({ trial: true, thread });
-      });
-  }
-
-  if (loginState === 'eliminate') {
-    Board.findOneAndDelete({ id }).exec((err, board) => {
-      if (err) return res.status(400).send({ trial: false });
-
-      res.status(200).json({ trial: true });
-    });
-  }
 });
 
 //게시글 상세내용 가져가기

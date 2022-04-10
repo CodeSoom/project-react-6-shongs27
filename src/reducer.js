@@ -200,7 +200,11 @@ const reducer = {
       ...state,
       guestBoard: {
         ...state.guestBoard,
-        threadField: thread,
+        threadField: {
+          //패스워드만 비워두기
+          password: '',
+          ...thread,
+        },
       },
     };
   },
