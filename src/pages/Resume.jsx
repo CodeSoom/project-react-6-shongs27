@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion, faComment } from '@fortawesome/free-solid-svg-icons';
 
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
@@ -53,22 +53,44 @@ const bounce = keyframes`
   
   `;
 
+const fadeIn = keyframes`
+    from {
+      visibility: visible;
+      opacity: 0;
+    }
+    to {
+      visibility: visible;
+      opacity: 1;
+    }
+`;
+
 const Addon = styled.div({
   display: 'flex',
   justifyContent: 'end',
-
-  '& button': {
-    border: 'none',
-    backgroundColor: 'white',
-
-    textAlign: 'end',
-
-    animation: `${bounce} .8s ease infinite alternate`,
-  },
 });
+
+const ListMenu = styled.button(({ clicked }) => ({
+  border: 'none',
+  backgroundColor: 'inherit',
+
+  animation: clicked || `${bounce} 1.8s ease infinite alternate`,
+}));
+
+const ItemMenu = styled.div(({ clicked }) => ({
+  position: 'relative',
+  right: '1.2em',
+  top: '-1em',
+
+  visibility: 'hidden',
+  animation: clicked && `${fadeIn} 2s ease forwards`,
+}));
 
 export default function Resume() {
   const [openMenu, setOpenMenu] = useState(false);
+
+  function handleClick() {
+    setOpenMenu((prev) => !prev);
+  }
 
   return (
     <>
@@ -124,6 +146,7 @@ export default function Resume() {
             <li>Html, CSS, Javascript</li>
             <li>React</li>
             <li>Redux</li>
+            <li>Jest</li>
           </ul>
         </div>
         &nbsp;
@@ -197,16 +220,19 @@ export default function Resume() {
         </ul>
       </Category>
 
-      <Addon className="Addon">
-        {/* 오른쪽에 위치, 살짝 통통 튀는 애니메이션 */}
-        <button
+      <Addon>
+        <ItemMenu clicked={openMenu}>
+          <ResumeMenu />
+        </ItemMenu>
+
+        <ListMenu
           type="button"
-          title="위로 이동, 연락 기능"
-          onClick={() => setOpenMenu((prev) => !prev)}
+          title="도움메뉴 열고 닫기"
+          onClick={handleClick}
+          clicked={openMenu}
         >
           <FontAwesomeIcon icon={faCircleQuestion} size="4x" />
-          {openMenu && <ResumeMenu />}
-        </button>
+        </ListMenu>
       </Addon>
     </>
   );
