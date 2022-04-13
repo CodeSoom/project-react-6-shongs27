@@ -39,6 +39,7 @@ export const List = styled.ul({
 });
 
 export const Item = styled.li({
+  //likes icon을 absolute로 붙이기 위해서
   position: 'relative',
 
   listStyle: 'none',

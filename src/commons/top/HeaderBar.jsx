@@ -38,7 +38,7 @@ const BarSearch = styled(SearchInput)({
     width: '400px',
     height: '1.8rem',
 
-    padding: 0,
+    padding: '0 .4em',
     marginTop: '.2rem',
 
     outline: 'none',
@@ -61,13 +61,14 @@ const Bar = styled.div({
   fontSize: '20px',
 
   '& span': {
+    display: 'inline-block',
+    marginTop: '3px',
     marginLeft: '10px',
-    lineHeight: '2.4rem',
 
     animation: `${slideIn} 1s cubic-bezier(0.25, 0.1, 0.25, 1)`,
 
     //x마크 크기
-    fontSize: '30px',
+    fontSize: '1.6em',
   },
 });
 

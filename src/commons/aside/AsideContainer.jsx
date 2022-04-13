@@ -19,7 +19,7 @@ const Container = styled.div({
 });
 
 const SectionsContainer = styled.div({
-  width: '80%',
+  width: '90%',
   margin: '0 auto',
   minHeight: '300px',
   padding: '57px 34px 24px',
