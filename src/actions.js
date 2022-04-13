@@ -171,7 +171,7 @@ export function registerPost(form) {
 
     if (trial) {
       message.info('글을 성공적으로 등록했습니다');
-      getPagesPosts(post.category);
+      dispatch(getPagesPosts(post.category));
     } else {
       message.fail('글 올리는걸 실패했습니다');
     }
@@ -186,17 +186,13 @@ export function changePostField(name, value) {
 }
 
 export function getGoogleAnalytics() {
-  return async (dispatch, getState) => {
-    const { trial, rows, totals } = await fetchGoogleAnalytics();
+  return async (dispatch) => {
+    const { trial, activeUsers } = await fetchGoogleAnalytics();
 
     if (!trial) {
-      return message.info('가져올 수 없었습니다');
+      return message.info('구글 애널리틱스 data를 가져올 수 없습니다');
     }
 
-    const activeUsers = {
-      yesterDayActiveUser: rows[0].metricValues[0].value,
-      oneMonthActiveUser: totals[0].metricValues[0].value,
-    };
     dispatch(setGoogleAnalytics(activeUsers));
   };
 }

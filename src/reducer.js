@@ -1,8 +1,8 @@
 const initialState = {
   GA: {
-    todayActiveUser: '',
-    yesterDayActiveUser: '',
-    oneMonthActiveUser: '',
+    realTimeUsers: '',
+    yesterdayActiveUsers: '',
+    monthActiveUsers: '',
   },
   post: '',
   likePost: [],

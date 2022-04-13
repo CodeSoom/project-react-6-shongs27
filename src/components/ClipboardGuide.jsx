@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 const Container = styled.div({
-  width: '20vw',
-  height: '8vh',
-  lineHeight: '8vh',
+  width: '20em',
+  height: '4em',
+  lineHeight: '4em',
   textAlign: 'center',
 
   backgroundColor: '#0fbcf9',
@@ -11,10 +11,6 @@ const Container = styled.div({
   borderRadius: '30px',
   border: '3px solid #eee',
   outline: '1px solid #aaa',
-
-  '& span': {
-    fontSize: '1em',
-  },
 });
 
 export default function ClipboardGuide() {

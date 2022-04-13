@@ -189,17 +189,6 @@ export default function Resume() {
         </Container>
 
         <Container>
-          <h3>빅데이터 청년인재</h3>
-          <p>2019.06</p>
-          <p>과학통신부 주관 빅데이터 청년인재</p>
-          <ul>
-            <li>3개월 교육과정</li>
-            <li>1개월 집체교육 + 2개월 프로젝트</li>
-            <b>미세먼지 농도에 따른 기상 예측 프로젝트 2등</b>
-          </ul>
-        </Container>
-
-        <Container>
           <h3>인텔과 함께하는 AI</h3>
           <p>2020.01</p>
           <p>
@@ -209,7 +198,19 @@ export default function Resume() {
             <li>1개월 교육</li>
           </ul>
         </Container>
+
+        <Container>
+          <h3>빅데이터 청년인재</h3>
+          <p>2019.06</p>
+          <p>과학통신부 주관 빅데이터 청년인재</p>
+          <ul>
+            <li>3개월 교육과정</li>
+            <li>1개월 집체교육 + 2개월 프로젝트</li>
+            <b>미세먼지 농도에 따른 기상 예측 프로젝트 2등</b>
+          </ul>
+        </Container>
       </Category>
+
       {/* //💬 */}
 
       <Category className="mottos">

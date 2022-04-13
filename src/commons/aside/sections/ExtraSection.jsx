@@ -24,7 +24,7 @@ export default function ExtraSection({
   handleChange,
   handleSubmit,
   searchField,
-  dailyActiveUsers,
+  activeUsers,
 }) {
   return (
     <Container>
@@ -37,7 +37,7 @@ export default function ExtraSection({
         />
       </SearchContainer>
 
-      <AnalysticSection dailyActiveUsers={dailyActiveUsers} />
+      <AnalysticSection activeUsers={activeUsers} />
     </Container>
   );
 }

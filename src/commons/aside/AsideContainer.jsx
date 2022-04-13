@@ -36,7 +36,7 @@ export default function AsideSectionsContainer() {
   const recentPosts = useSelector((state) => state.posts.recentPosts);
   const popularPosts = useSelector((state) => state.posts.popularPosts);
   const searchField = useSelector((state) => state.search.searchField);
-  const dailyActiveUsers = useSelector((state) => state.GA);
+  const activeUsers = useSelector((state) => state.GA);
 
   useEffect(() => {
     dispatch(getFooterPosts());
@@ -60,7 +60,7 @@ export default function AsideSectionsContainer() {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           searchField={searchField}
-          dailyActiveUsers={dailyActiveUsers}
+          activeUsers={activeUsers}
         />
       </SectionsContainer>
       <FooterBar />
