@@ -4,9 +4,6 @@ import { navList, navAddress } from '../../../fixture/nav';
 
 import styled from '@emotion/styled';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { reverseClicked } from '../../actions';
-
 const Container = styled.div({
   position: 'relative',
 
@@ -14,9 +11,9 @@ const Container = styled.div({
   justifyContent: 'center',
   alignContent: 'center',
 
-  //emotion 강의에서 희미한 회색 찾기 #333인가?
-  borderTop: '1px solid black',
-  borderBottom: '1px solid black',
+  backgroundColor: '#f1f2f6',
+  borderTop: '1px solid #eee',
+  borderBottom: '1px solid #eee',
 
   '& ul': {
     listStyle: 'none',
@@ -27,25 +24,19 @@ const Container = styled.div({
 
       '&:hover': {
         fontWeight: 'bold',
-        borderBottom: '1px solid blue',
+        borderBottom: '2px solid #95a5a6',
       },
     },
   },
 });
 
 export default function Nav() {
-  const dispatch = useDispatch();
-  const clicked = useSelector((state) => state.clicked);
-
-  function handleClick() {
-    dispatch(reverseClicked());
-  }
   return (
     <Container>
       {navList.map((navName, i) => (
         <ul key={i}>
           <li>
-            <Link to={navAddress[i]}>{navName}</Link>
+            <Link to={`/${navAddress[i]}`}>{navName}</Link>
           </li>
         </ul>
       ))}

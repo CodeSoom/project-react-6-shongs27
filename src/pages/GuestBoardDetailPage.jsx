@@ -11,12 +11,16 @@ import {
 
 import { ThreadLogin } from '../components/ThreadLogin';
 
+import styled from '@emotion/styled';
+
+const Container = styled.div({});
+
 export default function GuestBoardDetailPage() {
   const [loginFor, setLoginFor] = useState(false);
 
   const dispatch = useDispatch();
   const password = useSelector((state) => state.guestBoard.loginField.password);
-  const { id, title, content } = useSelector(
+  const { id, name, title, content } = useSelector(
     (state) => state.guestBoard.thread
   );
 
@@ -59,11 +63,28 @@ export default function GuestBoardDetailPage() {
   return (
     <>
       <>
-        <div>
-          <span>{id}</span>
-          <span>{title}</span>
-          <span>{content}</span>
-        </div>
+        <Container>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h2>{title}</h2>
+              <div>
+                <span>작성번호 : {id}</span>
+              </div>
+            </div>
+            <span>작성자 : {name}</span>
+          </div>
+          <div
+            style={{
+              margin: '3em 0',
+              padding: '40px',
+              minHeight: '12em',
+              backgroundColor: '#dfe5ed',
+              borderRadius: '30px',
+            }}
+          >
+            <span>{content}</span>
+          </div>
+        </Container>
 
         <div style={{ display: 'flex', justifyContent: 'end' }}>
           {true && (

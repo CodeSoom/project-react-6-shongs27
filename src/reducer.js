@@ -1,4 +1,5 @@
 const initialState = {
+  scrollY: 0,
   GA: {
     realTimeUsers: '',
     yesterdayActiveUsers: '',
@@ -7,10 +8,11 @@ const initialState = {
   post: '',
   likePost: [],
   posts: {
-    home: [],
+    all: [],
     js: [],
     react: [],
     computer: [],
+    TIL: [],
     recentPosts: [],
     popularPosts: [],
   },
@@ -26,8 +28,7 @@ const initialState = {
     userId: '',
     accessToken: '',
   },
-  page: { title: '', description: '' },
-  clicked: false,
+  page: { title: '', description: '', category: 'js' },
   guestBoard: {
     formMode: false,
     loginField: {
@@ -40,7 +41,7 @@ const initialState = {
       content: '',
     },
     board: [],
-    thread: { id: '', title: '', content: '' },
+    thread: { id: '', name: '', title: '', content: '' },
   },
 };
 
@@ -228,6 +229,13 @@ const reducer = {
         ...state.guestBoard,
         formMode,
       },
+    };
+  },
+
+  changeScrollY(state, { payload: { scrollY } }) {
+    return {
+      ...state,
+      scrollY,
     };
   },
 };
