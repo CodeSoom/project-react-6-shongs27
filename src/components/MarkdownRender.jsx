@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeTranslateAside from '../rehypeTranslateAside';
 
 const MarkDownStyle = styled.div({
   fontSize: '1rem',
@@ -25,14 +26,24 @@ const MarkDownStyle = styled.div({
 // > 장강은 도도하게 흐른다
 // `;
 
-export default function MarkdownRender({ markdown }) {
+export default function MarkdownRender({ markdown, images }) {
+  function arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
   return (
     <MarkDownStyle>
       <ReactMarkdown
         children={markdown}
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeTranslateAside]}
         components={{
-          // Map `h1` (`# heading`) to use `h2`s.
           blockquote: ({ ...props }) => (
             <blockquote
               style={{
@@ -42,9 +53,8 @@ export default function MarkdownRender({ markdown }) {
                 paddingLeft: '1em',
               }}
               {...props}
-            ></blockquote>
+            />
           ),
-          // Rewrite `em`s (`*like so*`) to `i` with a red foreground color.
           code: ({ node, ...props }) => (
             <pre
               style={{
@@ -57,6 +67,37 @@ export default function MarkdownRender({ markdown }) {
               {...props}
             />
           ),
+          aside: ({ ...props }) => (
+            <blockquote
+              style={{
+                borderLeft: '.2rem solid',
+                backgroundColor: '#74b9ff',
+                marginLeft: 0,
+                paddingLeft: '1em',
+              }}
+              {...props}
+            />
+          ),
+          img: ({ alt = '', ...props }) => {
+            let correctImage;
+            images.forEach((image) => {
+              if (image.filename === alt) {
+                correctImage = image;
+              }
+            });
+
+            return (
+              <div>
+                <img
+                  src={`data:${
+                    correctImage?.contentType
+                  };base64,${arrayBufferToBase64(correctImage?.data.data)}`}
+                  style={{ textAlign: 'center' }}
+                  height="300"
+                />
+              </div>
+            );
+          },
         }}
       />
     </MarkDownStyle>

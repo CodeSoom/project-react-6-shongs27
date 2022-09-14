@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
+import AllPage from './pages/AllPage';
 import JsPage from './pages/JsPage';
 import ReactPage from './pages/ReactPage';
 import ComputerPage from './pages/ComputerPage';
@@ -11,6 +12,7 @@ import Resume from './pages/Resume';
 import GuestBoardPage from './pages/GuestBoardPage';
 import GuestBoardDetailPage from './pages/GuestBoardDetailPage';
 import GuestBoardModifyPage from './pages/GuestBoardModifyPage';
+import TILPage from './pages/TILPage';
 
 import HeaderBar from './commons/top/HeaderBar';
 import Title from './commons/top/Title';
@@ -27,21 +29,13 @@ export default function PagesContainer() {
       <Title />
       <Nav />
       <Routes>
-        {/* route /일 경우 메인페이지 변경할 것 */}
-        <Route
-          path="/"
-          element={
-            <PageContainer>
-              <HomePage />
-            </PageContainer>
-          }
-        />
+        <Route path="/" element={<HomePage />} />
 
         <Route
-          path="/home"
+          path="/all"
           element={
             <PageContainer>
-              <HomePage />
+              <AllPage />
             </PageContainer>
           }
         ></Route>
@@ -69,6 +63,15 @@ export default function PagesContainer() {
           element={
             <PageContainer>
               <ComputerPage />
+            </PageContainer>
+          }
+        />
+
+        <Route
+          path="/TIL"
+          element={
+            <PageContainer>
+              <TILPage />
             </PageContainer>
           }
         />
@@ -139,7 +142,7 @@ export default function PagesContainer() {
           path="*"
           element={
             <PageContainer>
-              <div>Not Found Page</div>
+              <div>준비중인 페이지 입니다</div>
             </PageContainer>
           }
         />

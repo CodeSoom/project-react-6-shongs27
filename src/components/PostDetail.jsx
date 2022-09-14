@@ -13,6 +13,10 @@ const Likes = styled.button({
   '& span': {
     marginLeft: '5px',
   },
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
 });
 
 export default function PostDetail({
@@ -21,14 +25,15 @@ export default function PostDetail({
   likePost = [],
   handleClick,
 }) {
-  const { _id, writer, title, description, category, content } = postDetail;
+  const { _id, title, description, category, content, images } = postDetail;
 
-  const LikePostBoolean = likePost.some((post) => post === _id);
+  const likedPost = likePost.some((post) => post === _id);
+
   return (
     <>
-      <MarkdownRender markdown={content} />
+      <MarkdownRender markdown={content} images={images} />
       <Likes onClick={() => handleClick(_id)}>
-        {LikePostBoolean ? (
+        {likedPost ? (
           <FontAwesomeIcon icon={faHeartCircleCheck} />
         ) : (
           <FontAwesomeIcon icon={faHeart} />
